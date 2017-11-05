@@ -1,0 +1,101 @@
+Microsoft (R) Macro Assembler Version 11.00.50727.1	    08/25/17 21:45:05
+struct.asm						     Page 1 - 1
+
+
+				.386
+				.model flat,stdcall
+				.stack 4096
+				ExitProcess PROTO,exitCode:DWORD
+ 0000000C			Employe STRUCT
+ 00000000  00				idNum BYTE ?
+ 00000001  00000001 [			lastName BYTE "12"
+	    31 32
+	   ]
+					ALIGN WORD
+ 08400008  0000				years WORD ?
+					ALIGN DWORD
+ 0840000C  00000000			salary DWORD ?
+				Employe ENDS
+
+ 00000000			.data
+ 00000000 00			emp1 Employe <>
+	   00000001 [
+	    3231
+	   ] 00 0000 0000
+	   00000000
+ 0000000C 00			emp2 Employe <>
+	   00000001 [
+	    3231
+	   ] 00 0000 0000
+	   00000000
+
+
+ 00000000			.code
+
+ 00000000			main PROC
+ 00000000  66| C7 05			mov emp1.years,5
+	   00000004 R
+	   0005
+ 00000009  B8 0000000C			mov eax,sizeof emp1
+ 0000000E  66| C7 05			mov emp2.years,5
+	   00000010 R
+	   0005
+ 00000017  B8 0000000C			mov eax,sizeof emp2
+					invoke ExitProcess,0
+ 00000023			main ENDP
+
+				end main
+Microsoft (R) Macro Assembler Version 11.00.50727.1	    08/25/17 21:45:05
+struct.asm						     Symbols 2 - 1
+
+
+
+
+Structures and Unions:
+
+                N a m e                  Size
+                                         Offset      Type
+
+Employe  . . . . . . . . . . . .	 0000000C
+  idNum  . . . . . . . . . . . .	 00000000	 Byte
+  lastName . . . . . . . . . . .	 00000001	 Byte
+  years  . . . . . . . . . . . .	 00000004	 Word
+  salary . . . . . . . . . . . .	 00000008	 DWord
+
+
+Segments and Groups:
+
+                N a m e                 Size     Length   Align   Combine Class
+
+FLAT . . . . . . . . . . . . . .	GROUP
+STACK  . . . . . . . . . . . . .	32 Bit	 00001000 DWord	  Stack	  'STACK'	 
+_DATA  . . . . . . . . . . . . .	32 Bit	 00000018 DWord	  Public  'DATA'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 00000023 DWord	  Public  'CODE'	
+
+
+Procedures, parameters, and locals:
+
+                N a m e                 Type     Value    Attr
+
+ExitProcess  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
+main . . . . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 00000023 Public STDCALL
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+@CodeSize  . . . . . . . . . . .	Number	 00000000h   
+@DataSize  . . . . . . . . . . .	Number	 00000000h   
+@Interface . . . . . . . . . . .	Number	 00000003h   
+@Model . . . . . . . . . . . . .	Number	 00000007h   
+@code  . . . . . . . . . . . . .	Text   	 _TEXT
+@data  . . . . . . . . . . . . .	Text   	 FLAT
+@fardata?  . . . . . . . . . . .	Text   	 FLAT
+@fardata . . . . . . . . . . . .	Text   	 FLAT
+@stack . . . . . . . . . . . . .	Text   	 FLAT
+emp1 . . . . . . . . . . . . . .	Employe	 00000000 _DATA	
+emp2 . . . . . . . . . . . . . .	Employe	 0000000C _DATA	
+
+	   0 Warnings
+	   0 Errors
