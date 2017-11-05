@@ -1,0 +1,98 @@
+C51 COMPILER V9.01   MAIN                                                                  06/22/2017 22:55:11 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: D:\Program Files\Keil\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include "temp.h"
+   2          
+   3          typedef unsigned char u8;
+   4          typedef unsigned int u16;
+   5          
+   6          sbit LSA=P2^2;
+   7          sbit LSB=P2^3;
+   8          sbit LSC=P2^4;
+   9          
+  10          unsigned char code smg[]={0x3f,0x06,0x5b,0x4f,0x66,0x6d,
+  11                                  0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};       //共阴
+  12          u8 shu[8]={0};
+  13          void delay(u16 i){
+  14   1              while(i--);
+  15   1      }
+  16          void dongTaiSmg(){//动态数码管
+  17   1              u8 i=0,len=8;
+  18   1              for(i=0;i<len;i++){
+  19   2                      switch(i+8-len){
+  20   3                              case 0:
+  21   3                                      LSA=0;LSB=0;LSC=0;
+  22   3                                      break;
+  23   3                              case 1:
+  24   3                                      LSA=1;LSB=0;LSC=0;
+  25   3                                      break;
+  26   3                              case 2:
+  27   3                                      LSA=0;LSB=1;LSC=0;
+  28   3                                      break;
+  29   3                              case 3:
+  30   3                                      LSA=1;LSB=1;LSC=0;
+  31   3                                      break;
+  32   3                              case 4:
+  33   3                                      LSA=0;LSB=0;LSC=1;
+  34   3                                      break;
+  35   3                              case 5:
+  36   3                                      LSA=1;LSB=0;LSC=1;
+  37   3                                      break;
+  38   3                              case 6:
+  39   3                                      LSA=0;LSB=1;LSC=1;
+  40   3                                      break;
+  41   3                              case 7:
+  42   3                                      LSA=1;LSB=1;LSC=1;
+  43   3                                      break;
+  44   3                      }
+  45   2                      P0=shu[i];
+  46   2                      delay(50);
+  47   2                      P0=0;
+  48   2              }
+  49   1      }
+  50          
+  51          void main(){
+  52   1              float tp;
+  53   1              while(1){
+  54   2                      int temp=Ds18b20ReadTemp();
+  55   2                      if(temp<0){
+C51 COMPILER V9.01   MAIN                                                                  06/22/2017 22:55:11 PAGE 2   
+
+  56   3                              shu[0]=0x40;
+  57   3                              temp=temp-1;
+  58   3                              temp=~temp;
+  59   3                              tp=temp;
+  60   3                              temp=tp*0.0625*100+0.5;
+  61   3                      }else{
+  62   3                              shu[0]=0x00;
+  63   3                              tp=temp;
+  64   3                              temp=tp*0.0625*100+0.5;                 
+  65   3                      }
+  66   2                      shu[1]=smg[temp/10000];
+  67   2                      shu[2]=smg[temp%10000/1000];
+  68   2                      shu[3]=smg[temp%1000/100]|0x80;
+  69   2                      shu[4]=smg[temp%100/10];
+  70   2                      shu[5]=smg[temp%10];
+  71   2                      dongTaiSmg();
+  72   2              }
+  73   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    388    ----
+   CONSTANT SIZE    =     16    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      8       6
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

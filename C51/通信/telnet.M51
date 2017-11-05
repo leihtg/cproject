@@ -1,0 +1,107 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        06/18/2017  23:03:34  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+D:\PROGRAM FILES\KEIL\C51\BIN\BL51.EXE main.obj TO telnet
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  main.obj (MAIN)
+  D:\PROGRAM FILES\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  telnet (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            IDATA   0008H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0017H     UNIT         ?PR?USART?MAIN
+            CODE    001AH     0005H     UNIT         ?PR?MAIN?MAIN
+                    001FH     0004H                  *** GAP ***
+            CODE    0023H     0003H     ABSOLUTE     
+            CODE    0026H     0016H     UNIT         ?PR?USARTINIT?MAIN
+            CODE    003CH     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   telnet (MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN
+  +--> ?PR?USARTINIT?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  telnet (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  B:00A8H.7       PUBLIC        EA
+  B:00A8H.4       PUBLIC        ES
+  B:0098H.0       PUBLIC        RI
+  B:0098H.1       PUBLIC        TI
+BL51 BANKED LINKER/LOCATER V6.22                                                      06/18/2017  23:03:34  PAGE 2
+
+
+  C:001AH         PUBLIC        main
+  D:0099H         PUBLIC        SBUF
+  D:0087H         PUBLIC        PCON
+  C:0003H         PUBLIC        usart
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  C:0026H         PUBLIC        usartInit
+  D:008DH         PUBLIC        TH1
+  D:008BH         PUBLIC        TL1
+  B:0088H.6       PUBLIC        TR1
+  -------         PROC          USARTINIT
+  C:0026H         LINE#         6
+  C:0026H         LINE#         7
+  C:0029H         LINE#         8
+  C:002CH         LINE#         9
+  C:002FH         LINE#         10
+  C:0032H         LINE#         11
+  C:0034H         LINE#         12
+  C:0037H         LINE#         13
+  C:0039H         LINE#         14
+  C:003BH         LINE#         15
+  -------         ENDPROC       USARTINIT
+  -------         PROC          MAIN
+  C:001AH         LINE#         16
+  C:001AH         LINE#         17
+  C:001DH         LINE#         18
+  -------         ENDPROC       MAIN
+  -------         PROC          USART
+  -------         DO            
+  D:0007H         SYMBOL        receiveData
+  -------         ENDDO         
+  C:0003H         LINE#         20
+  C:000AH         LINE#         22
+  C:000CH         LINE#         23
+  C:000EH         LINE#         24
+  C:0010H         LINE#         25
+  C:0013H         LINE#         26
+  C:0015H         LINE#         27
+  -------         ENDPROC       USART
+  -------         ENDMOD        MAIN
+
+Program Size: data=9.0 xdata=0 code=68
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

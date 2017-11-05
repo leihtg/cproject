@@ -1,0 +1,66 @@
+C51 COMPILER V9.01   XPT2046                                                               07/02/2017 10:24:09 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE XPT2046
+OBJECT MODULE PLACED IN XPT2046.OBJ
+COMPILER INVOKED BY: D:\Program Files\Keil\C51\BIN\C51.EXE XPT2046.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include "XPT2046.h"
+   2          
+   3          void SPI_Write(uchar dat){
+   4   1              uchar i;
+   5   1              CLK=0;
+   6   1              for(i=0;i<8;i++){
+   7   2                      DIN=dat>>7;
+   8   2                      dat<<=1;
+   9   2                      CLK=0;
+  10   2      
+  11   2                      CLK=1;
+  12   2              }
+  13   1      }
+  14          
+  15          uint SPI_Read(void){
+  16   1              uint i,dat=0;
+  17   1              CLK=0;
+  18   1              for(i=0;i<12;i++){
+  19   2                      dat<<=1;
+  20   2                      CLK=1;
+  21   2                      CLK=0;
+  22   2                      dat|=DOUT;
+  23   2              }
+  24   1              return dat;
+  25   1      }
+  26          
+  27          uint Read_AD_Data(uchar cmd){
+  28   1              uchar i;
+  29   1              uint AD_Value;
+  30   1              CLK=0;
+  31   1              CS=0;
+  32   1              SPI_Write(cmd);
+  33   1              for(i=6;i>0;i--);
+  34   1              //CLK=1;
+  35   1              _nop_();
+  36   1              _nop_();
+  37   1              CLK=0;
+  38   1              _nop_();
+  39   1              _nop_();
+  40   1              AD_Value=SPI_Read();
+  41   1              CS=1;
+  42   1              return AD_Value;
+  43   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     87    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

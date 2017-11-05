@@ -1,0 +1,137 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        06/10/2017  22:47:33  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+D:\PROGRAM FILES\KEIL\C51\BIN\BL51.EXE main.obj TO next
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  main.obj (MAIN)
+  D:\PROGRAM FILES\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  next (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            IDATA   0008H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0027H     UNIT         ?PR?BUJINDIANJI?MAIN
+            CODE    002AH     0013H     UNIT         ?PR?_DELAY?MAIN
+            CODE    003DH     0013H     UNIT         ?PR?MADA?MAIN
+            CODE    0050H     000CH     UNIT         ?C_C51STARTUP
+            CODE    005CH     0003H     UNIT         ?PR?MAIN?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   next (MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN
+  +--> ?PR?BUJINDIANJI?MAIN
+
+?PR?BUJINDIANJI?MAIN
+  +--> ?PR?_DELAY?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  next (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  C:0003H         PUBLIC        bujindianji
+BL51 BANKED LINKER/LOCATER V6.22                                                      06/10/2017  22:47:33  PAGE 2
+
+
+  C:0032H         PUBLIC        _delay
+  C:003DH         PUBLIC        mada
+  B:0090H.0       PUBLIC        motoa
+  B:0090H.1       PUBLIC        motob
+  B:0090H.2       PUBLIC        motoc
+  B:0090H.3       PUBLIC        motod
+  C:005CH         PUBLIC        main
+  B:0090H.0       PUBLIC        moto
+  -------         PROC          MAIN
+  C:005CH         LINE#         18
+  C:005CH         LINE#         19
+  -------         ENDPROC       MAIN
+  -------         PROC          BUJINDIANJI
+  C:0003H         LINE#         22
+  C:0003H         LINE#         23
+  C:0006H         LINE#         24
+  C:0006H         LINE#         26
+  C:0008H         LINE#         27
+  C:000AH         LINE#         28
+  C:000AH         LINE#         29
+  C:000AH         LINE#         30
+  C:000DH         LINE#         32
+  C:000FH         LINE#         33
+  C:0011H         LINE#         34
+  C:0011H         LINE#         35
+  C:0011H         LINE#         36
+  C:0014H         LINE#         38
+  C:0016H         LINE#         39
+  C:0018H         LINE#         40
+  C:001AH         LINE#         41
+  C:001CH         LINE#         42
+  C:001FH         LINE#         44
+  C:0021H         LINE#         45
+  C:0023H         LINE#         46
+  C:0025H         LINE#         47
+  C:0025H         LINE#         48
+  C:0028H         LINE#         49
+  -------         ENDPROC       BUJINDIANJI
+  C:002CH         SYMBOL        L?0016
+  C:002EH         SYMBOL        L?0017
+  -------         PROC          L?0015
+  -------         ENDPROC       L?0015
+  C:002CH         SYMBOL        L?0016
+  C:002EH         SYMBOL        L?0017
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        i
+  C:0032H         LINE#         52
+  C:0032H         LINE#         53
+  C:003CH         LINE#         54
+  -------         ENDPROC       _DELAY
+  -------         PROC          MADA
+  -------         DO            
+  D:0005H         SYMBOL        i
+  -------         ENDDO         
+  C:003DH         LINE#         56
+  C:003DH         LINE#         57
+  C:003FH         LINE#         58
+BL51 BANKED LINKER/LOCATER V6.22                                                      06/10/2017  22:47:33  PAGE 3
+
+
+  C:003FH         LINE#         59
+  C:0041H         LINE#         60
+  C:0048H         LINE#         61
+  C:004CH         LINE#         62
+  C:004EH         LINE#         63
+  -------         ENDPROC       MADA
+  -------         ENDMOD        MAIN
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?MADA?MAIN
+
+Program Size: data=9.0 xdata=0 code=95
+LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)

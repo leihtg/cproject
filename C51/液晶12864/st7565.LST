@@ -1,0 +1,130 @@
+C51 COMPILER V9.01   ST7565                                                                07/09/2017 17:59:09 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE ST7565
+OBJECT MODULE PLACED IN st7565.OBJ
+COMPILER INVOKED BY: D:\Program Files\Keil\C51\BIN\C51.EXE st7565.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include "st7565.h"
+   2          
+   3          void Lcd7565_WriteCmd(uchar cmd){
+   4   1              LCD12864_CS=0;
+   5   1              LCD12864_RD=1;
+   6   1              LCD12864_RS=0;
+   7   1              LCD12864_RW=0;
+   8   1              _nop_();
+   9   1              _nop_();
+  10   1      
+  11   1              DATA_PORT=cmd;
+  12   1              _nop_();
+  13   1              _nop_();
+  14   1              LCD12864_RW=1;
+  15   1      }
+  16          
+  17          void Lcd7565_WriteData(uchar dat){
+  18   1              LCD12864_CS=0;
+  19   1              LCD12864_RD=1;
+  20   1              LCD12864_RS=1;
+  21   1              LCD12864_RW=0;
+  22   1              _nop_();
+  23   1              _nop_();
+  24   1      
+  25   1              DATA_PORT=dat;
+  26   1              _nop_();
+  27   1              _nop_();
+  28   1      
+  29   1              LCD12864_RW=1;
+  30   1      }
+  31          
+  32          void Lcd12864_Init(){
+  33   1              uchar i;
+  34   1              LCD12864_RSET=0;
+  35   1              for(i=0;i<100;i++);
+  36   1              LCD12864_CS=0;
+  37   1              LCD12864_RSET=1;
+  38   1      
+  39   1              Lcd7565_WriteCmd(0xE2);
+  40   1              for(i=0;i<100;i++);
+  41   1              
+  42   1              Lcd7565_WriteCmd(0xa1);
+  43   1              Lcd7565_WriteCmd(0xc8);
+  44   1              Lcd7565_WriteCmd(0xa6);
+  45   1              Lcd7565_WriteCmd(0xa4);
+  46   1              Lcd7565_WriteCmd(0xa2);
+  47   1              Lcd7565_WriteCmd(0xf8);
+  48   1              Lcd7565_WriteCmd(0x01);
+  49   1              Lcd7565_WriteCmd(0x81);
+  50   1              Lcd7565_WriteCmd(0x23);
+  51   1              Lcd7565_WriteCmd(0x25);
+  52   1              Lcd7565_WriteCmd(0x2f);
+  53   1              for(i=0;i<100;i++);
+  54   1              Lcd7565_WriteCmd(0x40);
+  55   1              Lcd7565_WriteCmd(0xaf);
+C51 COMPILER V9.01   ST7565                                                                07/09/2017 17:59:09 PAGE 2   
+
+  56   1              for(i=0;i<100;i++);
+  57   1      }
+  58          
+  59          void Lcd12864_ClearScreen(void){
+  60   1              uchar i,j;
+  61   1              for(i=0;i<8;i++){
+  62   2                      Lcd7565_WriteCmd(0xb0+i);
+  63   2                      Lcd7565_WriteCmd(0x10);
+  64   2                      Lcd7565_WriteCmd(0x04);
+  65   2      
+  66   2                      for(j=0;j<128;j++){
+  67   3                              Lcd7565_WriteData(0x00);
+  68   3                      }
+  69   2      
+  70   2              }
+  71   1      }
+  72          
+  73          #ifdef CHAR_CODE
+  74          #include "charcode.h"
+  75          uchar Lcd12864_Write16CnCHAR(uchar x,uchar y,uchar *cn){
+  76   1              uchar j,x1,x2,wordNum;
+  77   1              if(y>7)return 0;
+  78   1              if(x>128)return 0;
+  79   1              y+=0xB0;
+  80   1              Lcd7565_WriteCmd(y);
+  81   1              while(*cn!='\0'){
+  82   2                      Lcd7565_WriteCmd(y);
+  83   2                      x1=(x>>4)&0x0f;
+  84   2                      x2=x&0x0f;
+  85   2                      Lcd7565_WriteCmd(0x10+x1);
+  86   2                      Lcd7565_WriteCmd(0x04+x2);
+  87   2                      
+  88   2                      for(wordNum=0;wordNum<50;wordNum++){
+  89   3                              if((CN16CHAR[wordNum].Index[0]==*cn)&&(CN16CHAR[wordNum].Index[1]==*(cn+1))){
+  90   4                                      for(j=0;j<32;j++){
+  91   5                                              if(j==16){
+  92   6                                                      Lcd7565_WriteCmd(y+1);
+  93   6                                                      Lcd7565_WriteCmd(0x10+x1);
+  94   6                                                      Lcd7565_WriteCmd(0x04+x2);
+  95   6                                              }
+  96   5                                              Lcd7565_WriteData(CN16CHAR[wordNum].Msk[j]);
+  97   5                                      }
+  98   4                                      x+=16;
+  99   4                              }
+ 100   3                      }
+ 101   2                      cn+=2;
+ 102   2              }
+ 103   1              return 1;
+ 104   1      }
+ 105          #endif
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    370    ----
+   CONSTANT SIZE    =    238    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

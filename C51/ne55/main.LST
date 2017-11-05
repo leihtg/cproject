@@ -1,0 +1,141 @@
+C51 COMPILER V9.01   MAIN                                                                  06/15/2017 00:00:38 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: D:\Program Files\Keil\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include "reg51.h"
+   2          
+   3          typedef unsigned char u8;
+   4          typedef unsigned int u16;
+   5          
+   6          unsigned char code smg[]={0x3f,0x06,0x5b,0x4f,0x66,0x6d,
+   7                                  0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};       //共阴
+   8          
+   9          sbit LSA=P2^2;
+  10          sbit LSB=P2^3;
+  11          sbit LSC=P2^4;
+  12          
+  13          
+  14          void delay(u16 i);
+  15          void dongTaiSmg(long num);
+  16          void Time0Init();
+  17          void Count1Init();
+  18          
+  19          static u16 timeCount=0;
+  20          static long sum=0,freq=0;
+  21          void main(){
+  22   1              Time0Init();
+  23   1              Count1Init();
+  24   1              while(1){       
+  25   2                      dongTaiSmg(freq);
+  26   2                      if(TR1==0){
+  27   3                              freq=sum+TH1*256+TL1;
+  28   3                              sum=0;
+  29   3      
+  30   3                              TH1=0;
+  31   3                              TL1=0;
+  32   3                              TR0=1;
+  33   3                              TR1=1;                          
+  34   3                      }                               
+  35   2              }
+  36   1      }
+  37          void Time0Init(){//定时器
+  38   1              TMOD|=0x01;
+  39   1              TH0=0x3c; //50ms
+  40   1              TL0=0xb0;
+  41   1              ET0=1;
+  42   1              EA=1;
+  43   1              TR0=1;
+  44   1      } 
+  45          void time0() interrupt 1{
+  46   1              TH0=0x3c;
+  47   1              TL0=0xb0;
+  48   1              timeCount++;
+  49   1              if(timeCount==20){//1秒
+  50   2                      timeCount=0;
+  51   2                      TR1=0;//先暂停
+  52   2                      TR0=0;
+  53   2              }
+  54   1              
+  55   1      }
+C51 COMPILER V9.01   MAIN                                                                  06/15/2017 00:00:38 PAGE 2   
+
+  56          void Count1Init(){//计数器
+  57   1              TMOD|=0x50;
+  58   1              TH1=0x00;
+  59   1              TL1=0x00;
+  60   1              ET1=1;
+  61   1              EA=1;
+  62   1              TR1=1;  
+  63   1      }
+  64          void delay(u16 i){
+  65   1              while(i--);
+  66   1      }
+  67          
+  68          void count() interrupt 3{//计数器1中断
+  69   1              sum+=65536;
+  70   1      }
+  71          
+  72          void dongTaiSmg(long num){//动态数码管
+  73   1              u8 i=0,len=8,shu[8]={0};
+  74   1              shu[7]=num%10;
+  75   1              shu[6]=num/10%10;
+  76   1              shu[5]=num/100%10;
+  77   1              shu[4]=num/1000%10;
+  78   1              shu[3]=num/10000%10;
+  79   1              shu[2]=num/100000%10;
+  80   1              shu[1]=num/1000000%10;
+  81   1              shu[0]=num/10000000%10;
+  82   1              for(i=0;i<len;i++){
+  83   2                      switch(i+8-len){
+  84   3                              case 0:
+  85   3                                      LSA=0;LSB=0;LSC=0;
+  86   3                                      break;
+  87   3                              case 1:
+  88   3                                      LSA=1;LSB=0;LSC=0;
+  89   3                                      break;
+  90   3                              case 2:
+  91   3                                      LSA=0;LSB=1;LSC=0;
+  92   3                                      break;
+  93   3                              case 3:
+  94   3                                      LSA=1;LSB=1;LSC=0;
+  95   3                                      break;
+  96   3                              case 4:
+  97   3                                      LSA=0;LSB=0;LSC=1;
+  98   3                                      break;
+  99   3                              case 5:
+ 100   3                                      LSA=1;LSB=0;LSC=1;
+ 101   3                                      break;
+ 102   3                              case 6:
+ 103   3                                      LSA=0;LSB=1;LSC=1;
+ 104   3                                      break;
+ 105   3                              case 7:
+ 106   3                                      LSA=1;LSB=1;LSC=1;
+ 107   3                                      break;
+ 108   3                      }
+ 109   2                      P0=smg[shu[i]];
+ 110   2                      delay(10);
+ 111   2                      P0=0;
+ 112   2              }
+ 113   1      }
+ 114          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+C51 COMPILER V9.01   MAIN                                                                  06/15/2017 00:00:38 PAGE 3   
+
+   CODE SIZE        =    575    ----
+   CONSTANT SIZE    =     24    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     10      13
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

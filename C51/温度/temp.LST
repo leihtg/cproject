@@ -1,0 +1,116 @@
+C51 COMPILER V9.01   TEMP                                                                  06/22/2017 22:55:10 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE TEMP
+OBJECT MODULE PLACED IN temp.OBJ
+COMPILER INVOKED BY: D:\Program Files\Keil\C51\BIN\C51.EXE temp.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include "temp.h"
+   2          
+   3          void Delay1ms(uint y){
+   4   1              uint x;
+   5   1              for(;y>0;y--){
+   6   2                      for(x=110;x>0;x--);
+   7   2              }
+   8   1      }
+   9          /**     初始化
+  10                  1 存在 0 不存在
+  11          */
+  12          uchar Ds18b20Init(){
+  13   1              uchar i=0;
+  14   1              DSPORT=0;
+  15   1              i=70;
+  16   1              while(i--);//642us
+  17   1              DSPORT=1;
+  18   1              i=0;
+  19   1              while(DSPORT){
+  20   2                      Delay1ms(1);
+  21   2                      i++;
+  22   2                      if(i>5){
+  23   3                              return 0;
+  24   3                      }               
+  25   2              }
+  26   1              return 1;
+  27   1      }
+  28          
+  29          void Ds18b20WriteByte(uchar dat){
+  30   1              uchar i,j;
+  31   1              for(j=0;j<8;j++){
+  32   2                      DSPORT=0;
+  33   2                      i++;//1us
+  34   2                      DSPORT=dat&0x01;
+  35   2                      i=6;
+  36   2                      while(i--);
+  37   2                      DSPORT=1;
+  38   2                      dat>>=1;
+  39   2              }
+  40   1      }
+  41          
+  42          uchar Ds18b20ReadByte(){
+  43   1              uchar dat,bi,i,j;
+  44   1              for(j=8;j>0;j--){
+  45   2                      DSPORT=0;
+  46   2                      i++;
+  47   2                      DSPORT=1;
+  48   2                      i++;
+  49   2                      i++;
+  50   2                      bi=DSPORT;
+  51   2                      dat=(dat>>1)|(bi<<7);
+  52   2                      i=4;
+  53   2                      while(i--);//45us
+  54   2              }
+  55   1      
+C51 COMPILER V9.01   TEMP                                                                  06/22/2017 22:55:10 PAGE 2   
+
+  56   1              return dat;
+  57   1      }
+  58          
+  59          /**
+  60                  温度转换
+  61          */
+  62          void Ds18b20ChangeTemp(){
+  63   1              Ds18b20Init();
+  64   1              Delay1ms(1);
+  65   1              Ds18b20WriteByte(0xcc);
+  66   1              Ds18b20WriteByte(0x44);
+  67   1      }
+  68          
+  69          /**
+  70                  发送温度读取命令
+  71          */
+  72          void Ds18b20ReadTempCom(){
+  73   1              Ds18b20Init();
+  74   1              Delay1ms(1);
+  75   1              Ds18b20WriteByte(0xcc);
+  76   1              Ds18b20WriteByte(0xbe);
+  77   1      }
+  78          
+  79          int Ds18b20ReadTemp(){
+  80   1              int temp=0;
+  81   1              uchar tmh,tml;
+  82   1              Ds18b20ChangeTemp();
+  83   1              Ds18b20ReadTempCom();
+  84   1              tml=Ds18b20ReadByte();
+  85   1              tmh=Ds18b20ReadByte();
+  86   1              
+  87   1              temp=tmh;
+  88   1              temp<<=8;
+  89   1              temp|=tml;
+  90   1              return temp;
+  91   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    179    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

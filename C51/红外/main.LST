@@ -1,0 +1,134 @@
+C51 COMPILER V9.01   MAIN                                                                  06/25/2017 17:08:00 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: D:\Program Files\Keil\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include <reg51.h>
+   2          
+   3          typedef unsigned char u8;
+   4          typedef unsigned int u16;
+   5          
+   6          sbit LSA=P2^2;
+   7          sbit LSB=P2^3;
+   8          sbit LSC=P2^4;
+   9          
+  10          sbit IRIN=P3^2;
+  11          
+  12          u8 DisplayData[8];
+  13          u8 IrValue[6];
+  14          u8 Time;
+  15          
+  16          u8 code smgduan[17]={
+  17          0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,
+  18          0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71,0X76};
+  19          
+  20          void delay(u16 i){
+  21   1              while(i--);
+  22   1      }
+  23          
+  24          void DigDisplay()
+  25          {
+  26   1              u8 i;
+  27   1              for(i=0;i<3;i++)
+  28   1              {
+  29   2                      switch(i)        //位选，选择点亮的数码管，
+  30   2                      {
+  31   3                              case(0):
+  32   3                                      LSA=0;LSB=0;LSC=0; break;//显示第0位
+  33   3                              case(1):
+  34   3                                      LSA=1;LSB=0;LSC=0; break;//显示第1位
+  35   3                              case(2):
+  36   3                                      LSA=0;LSB=1;LSC=0; break;//显示第2位    
+  37   3                      }
+  38   2                      P0=DisplayData[i];//发送数据
+  39   2                      delay(100); //间隔一段时间扫描  
+  40   2                      P0=0x00;//消隐
+  41   2              }               
+  42   1      }
+  43          
+  44          //1号中断初始化
+  45          void int0Init(){
+  46   1              IT0=1; //下降沿有效
+  47   1              EX0=1;
+  48   1              EA=1;
+  49   1      
+  50   1              //IRIN=1;
+  51   1      }
+  52          
+  53          void main(){
+  54   1              int0Init();
+  55   1              while(1){
+C51 COMPILER V9.01   MAIN                                                                  06/25/2017 17:08:00 PAGE 2   
+
+  56   2                      DisplayData[0]=smgduan[IrValue[2]/16];
+  57   2                      DisplayData[1]=smgduan[IrValue[2]%16];
+  58   2                  DisplayData[2]=smgduan[16];
+  59   2                      DigDisplay();
+  60   2              }       
+  61   1      }
+  62          
+  63          void intreput() interrupt 0{
+  64   1              u8 j,k;
+  65   1              u16 err;
+  66   1              Time=0;
+  67   1              delay(700);//7ms
+  68   1              if(IRIN==0){
+  69   2                      err=1000;
+  70   2                      while(IRIN==0&&err-->0){
+  71   3                              delay(1);
+  72   3                      }
+  73   2                      if(IRIN==1){
+  74   3                              err=500;
+  75   3                              while(IRIN==1&&err-->0){
+  76   4                                      delay(1);                               
+  77   4                              }
+  78   3                              for(k=0;k<4;k++){
+  79   4                                      for(j=0;j<8;j++){
+  80   5                                              err=60;
+  81   5                                              while(IRIN==0&&err-->0){
+  82   6                                                      delay(1);
+  83   6                                              }
+  84   5                                              err=500;
+  85   5                                              while(IRIN==1&&err-->0){
+  86   6                                                      delay(10);
+  87   6                                                      Time++;
+  88   6                                                      if(Time>30){
+  89   7                                                              return;
+  90   7                                                      }
+  91   6                                              }
+  92   5                                              IrValue[k]>>=1;
+  93   5                                              if(Time>=8){
+  94   6                                                      IrValue[k]|=0x80;
+  95   6                                              }
+  96   5                                              Time=0;
+  97   5                                      }
+  98   4                              }
+  99   3                      }
+ 100   2                      if(IRIN==1){
+ 101   3                              if(IrValue[2]!=~IrValue[2]){
+ 102   4                                      return;
+ 103   4                              }
+ 104   3                      }
+ 105   2                              
+ 106   2              }                       
+ 107   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    341    ----
+   CONSTANT SIZE    =     17    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     15       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+C51 COMPILER V9.01   MAIN                                                                  06/25/2017 17:08:00 PAGE 3   
+
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
