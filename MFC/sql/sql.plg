@@ -1,0 +1,40 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: sql - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\Thinkpad\AppData\Local\Temp\RSPB02.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /FR"Debug/" /Fp"Debug/sql.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\MyProjects\workspace\MFC\sql\main.cpp"
+]
+Creating command line "cl.exe @C:\Users\Thinkpad\AppData\Local\Temp\RSPB02.tmp" 
+Creating temporary file "C:\Users\Thinkpad\AppData\Local\Temp\RSPB03.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/sql.pdb" /debug /machine:I386 /out:"Debug/sql.exe" /pdbtype:sept 
+.\Debug\main.obj
+]
+Creating command line "link.exe @C:\Users\Thinkpad\AppData\Local\Temp\RSPB03.tmp"
+<h3>Output Window</h3>
+Compiling...
+main.cpp
+D:\MyProjects\workspace\MFC\sql\main.cpp(2) : error C2146: syntax error : missing ';' before identifier 'SQL'
+D:\MyProjects\workspace\MFC\sql\main.cpp(2) : error C2501: 'EXEC' : missing storage-class or type specifiers
+D:\MyProjects\workspace\MFC\sql\main.cpp(2) : fatal error C1004: unexpected end of file found
+Error executing cl.exe.
+Creating command line "bscmake.exe /nologo /o"Debug/sql.bsc"  .\Debug\main.sbr"
+Creating browse info file...
+BSCMAKE: error BK1506 : cannot open file '.\Debug\main.sbr': No such file or directory
+Error executing bscmake.exe.
+<h3>Output Window</h3>
+
+
+
+<h3>Results</h3>
+sql.exe - 4 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

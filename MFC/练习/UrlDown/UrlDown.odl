@@ -1,0 +1,67 @@
+// UrlDown.odl : type library source for ActiveX Control project.
+
+// This file will be processed by the Make Type Library (mktyplib) tool to
+// produce the type library (UrlDown.tlb) that will become a resource in
+// UrlDown.ocx.
+
+#include <olectl.h>
+#include <idispids.h>
+
+[ uuid(B645DF21-F9A3-4929-94D1-FFDB32E2F881), version(1.0),
+  helpfile("UrlDown.hlp"),
+  helpstring("UrlDown ActiveX Control module"),
+  control ]
+library URLDOWNLib
+{
+	importlib(STDOLE_TLB);
+	importlib(STDTYPE_TLB);
+
+	//  Primary dispatch interface for CUrlDownCtrl
+
+	[ uuid(5667E813-F9DA-4076-9213-3F75279EEB6F),
+	  helpstring("Dispatch interface for UrlDown Control"), hidden ]
+	dispinterface _DUrlDown
+	{
+		properties:
+			// NOTE - ClassWizard will maintain property information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_PROP(CUrlDownCtrl)
+			//}}AFX_ODL_PROP
+
+		methods:
+			// NOTE - ClassWizard will maintain method information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_METHOD(CUrlDownCtrl)
+			//}}AFX_ODL_METHOD
+	};
+
+	//  Event dispatch interface for CUrlDownCtrl
+
+	[ uuid(40442815-AC5B-49A1-A1A9-8AD7C9E03164),
+	  helpstring("Event interface for UrlDown Control") ]
+	dispinterface _DUrlDownEvents
+	{
+		properties:
+			//  Event interface has no properties
+
+		methods:
+			// NOTE - ClassWizard will maintain event information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_EVENT(CUrlDownCtrl)
+			//}}AFX_ODL_EVENT
+	};
+
+	//  Class information for CUrlDownCtrl
+
+	[ uuid(99B404FB-8B1E-49C5-B034-207EA2595984),
+	  helpstring("UrlDown Control"), control ]
+	coclass UrlDown
+	{
+		[default] dispinterface _DUrlDown;
+		[default, source] dispinterface _DUrlDownEvents;
+	};
+
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};

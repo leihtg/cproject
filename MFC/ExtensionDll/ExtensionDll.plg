@@ -1,0 +1,36 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: ExtensionDll - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\Thinkpad\AppData\Local\Temp\RSPF572.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_AFXEXT" /Fp"Debug/ExtensionDll.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ    /c 
+"D:\MyProjects\ExtensionDll\RoundButton.cpp"
+]
+Creating command line "cl.exe @C:\Users\Thinkpad\AppData\Local\Temp\RSPF572.tmp" 
+Creating temporary file "C:\Users\Thinkpad\AppData\Local\Temp\RSPF583.tmp" with contents
+[
+/nologo /subsystem:windows /dll /incremental:yes /pdb:"Debug/ExtensionDll.pdb" /debug /machine:I386 /def:".\ExtensionDll.def" /out:"Debug/ExtensionDll.dll" /implib:"Debug/ExtensionDll.lib" /pdbtype:sept 
+.\Debug\ExtensionDll.obj
+.\Debug\StdAfx.obj
+.\Debug\ExtensionDll.res
+.\Debug\RoundButton.obj
+]
+Creating command line "link.exe @C:\Users\Thinkpad\AppData\Local\Temp\RSPF583.tmp"
+<h3>Output Window</h3>
+Compiling...
+RoundButton.cpp
+Linking...
+   Creating library Debug/ExtensionDll.lib and object Debug/ExtensionDll.exp
+
+
+
+<h3>Results</h3>
+ExtensionDll.dll - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

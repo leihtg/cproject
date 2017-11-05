@@ -1,0 +1,29 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: 微调滑块进度条 - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x804 /fo"Debug/微调滑块进度条.res" /d "_DEBUG" /d "_AFXDLL" "D:\MyProjects\微调滑块进度条\微调滑块进度条.rc"" 
+Creating temporary file "C:\Users\Thinkpad\AppData\Local\Temp\RSPD4DC.tmp" with contents
+[
+/nologo /subsystem:windows /incremental:yes /pdb:"Debug/微调滑块进度条.pdb" /debug /machine:I386 /out:"Debug/微调滑块进度条.exe" /pdbtype:sept 
+".\Debug\微调滑块进度条.obj"
+".\Debug\微调滑块进度条Dlg.obj"
+".\Debug\StdAfx.obj"
+".\Debug\微调滑块进度条.res"
+]
+Creating command line "link.exe @C:\Users\Thinkpad\AppData\Local\Temp\RSPD4DC.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Linking...
+
+
+
+<h3>Results</h3>
+微调滑块进度条.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: change - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x804 /fo"Debug/change.res" /d "_DEBUG" /d "_AFXDLL" "D:\MyProjects\change\change.rc"" 
+Creating temporary file "C:\Users\Thinkpad\AppData\Local\Temp\RSP1A0F.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/change.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ   /c 
+"D:\MyProjects\change\change.cpp"
+"D:\MyProjects\change\changeDlg.cpp"
+]
+Creating command line "cl.exe @C:\Users\Thinkpad\AppData\Local\Temp\RSP1A0F.tmp" 
+Creating temporary file "C:\Users\Thinkpad\AppData\Local\Temp\RSP1A10.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/change.pch" /Yc"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ   /c 
+"D:\MyProjects\change\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\Users\Thinkpad\AppData\Local\Temp\RSP1A10.tmp" 
+Creating command line "link.exe /nologo /subsystem:windows /incremental:yes /pdb:"Debug/change.pdb" /debug /machine:I386 /out:"Debug/change.exe" /pdbtype:sept  .\Debug\change.obj .\Debug\changeDlg.obj .\Debug\StdAfx.obj .\Debug\change.res "
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+change.cpp
+changeDlg.cpp
+Generating Code...
+Linking...
+
+
+
+<h3>Results</h3>
+change.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

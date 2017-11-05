@@ -1,0 +1,30 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: Â¼Òô - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\Thinkpad\AppData\Local\Temp\RSP177A.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"Debug/" /Fp"Debug/Â¼Òô.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\MyProjects\Â¼Òô\Â¼ÒôDlg.cpp"
+]
+Creating command line "cl.exe @C:\Users\Thinkpad\AppData\Local\Temp\RSP177A.tmp" 
+Creating command line "link.exe /nologo /subsystem:windows /incremental:yes /pdb:"Debug/Â¼Òô.pdb" /debug /machine:I386 /out:"Debug/Â¼Òô.exe" /pdbtype:sept  ".\Debug\StdAfx.obj" ".\Debug\Â¼Òô.obj" ".\Debug\Â¼ÒôDlg.obj" ".\Debug\Â¼Òô.res" "
+<h3>Output Window</h3>
+Compiling...
+Â¼ÒôDlg.cpp
+Linking...
+Creating command line "bscmake.exe /nologo /o"Debug/Â¼Òô.bsc"  ".\Debug\StdAfx.sbr" ".\Debug\Â¼Òô.sbr" ".\Debug\Â¼ÒôDlg.sbr""
+Creating browse info file...
+<h3>Output Window</h3>
+
+
+
+<h3>Results</h3>
+Â¼Òô.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

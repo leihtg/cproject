@@ -1,0 +1,11 @@
+; feiq.def : Declares the module parameters for the DLL.
+
+LIBRARY      "feiq"
+DESCRIPTION  'plugin1 Windows Dynamic Link Library'
+
+EXPORTS
+    ; Explicit exports can go here
+	DllCanUnloadNow PRIVATE
+	DllGetClassObject PRIVATE
+	DllRegisterServer PRIVATE
+	DllGetPluginClsids PRIVATE

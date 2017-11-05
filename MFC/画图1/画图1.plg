@@ -1,0 +1,56 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: »­Í¼1 - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\Thinkpad\AppData\Local\Temp\RSPFE70.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"Debug/" /Fp"Debug/»­Í¼1.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\MyProjects\workspace\MFC\»­Í¼1\MainFrm.cpp"
+"D:\MyProjects\workspace\MFC\»­Í¼1\»­Í¼1.cpp"
+"D:\MyProjects\workspace\MFC\»­Í¼1\»­Í¼1Doc.cpp"
+"D:\MyProjects\workspace\MFC\»­Í¼1\»­Í¼1View.cpp"
+]
+Creating command line "cl.exe @C:\Users\Thinkpad\AppData\Local\Temp\RSPFE70.tmp" 
+Creating temporary file "C:\Users\Thinkpad\AppData\Local\Temp\RSPFE71.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"Debug/" /Fp"Debug/»­Í¼1.pch" /Yc"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\MyProjects\workspace\MFC\»­Í¼1\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\Users\Thinkpad\AppData\Local\Temp\RSPFE71.tmp" 
+<h3>Output Window</h3>
+Compiling...
+StdAfx.cpp
+Compiling...
+MainFrm.cpp
+»­Í¼1.cpp
+»­Í¼1Doc.cpp
+»­Í¼1View.cpp
+Generating Code...
+Creating temporary file "C:\Users\Thinkpad\AppData\Local\Temp\RSP554.tmp" with contents
+[
+/nologo /subsystem:windows /incremental:yes /pdb:"Debug/»­Í¼1.pdb" /debug /machine:I386 /out:"Debug/»­Í¼1.exe" /pdbtype:sept 
+".\Debug\MainFrm.obj"
+".\Debug\StdAfx.obj"
+".\Debug\»­Í¼1.obj"
+".\Debug\»­Í¼1Doc.obj"
+".\Debug\»­Í¼1View.obj"
+".\Debug\»­Í¼1.res"
+]
+Creating command line "link.exe @C:\Users\Thinkpad\AppData\Local\Temp\RSP554.tmp"
+<h3>Output Window</h3>
+Linking...
+Creating command line "bscmake.exe /nologo /o"Debug/»­Í¼1.bsc"  ".\Debug\StdAfx.sbr" ".\Debug\MainFrm.sbr" ".\Debug\»­Í¼1.sbr" ".\Debug\»­Í¼1Doc.sbr" ".\Debug\»­Í¼1View.sbr""
+Creating browse info file...
+<h3>Output Window</h3>
+
+
+
+<h3>Results</h3>
+»­Í¼1.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

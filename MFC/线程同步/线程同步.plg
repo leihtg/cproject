@@ -1,0 +1,42 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: 线程同步 - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\Thinkpad\AppData\Local\Temp\RSPC554.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"Debug/" /Fp"Debug/线程同步.pch" /Yc"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\MyProjects\线程同步\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\Users\Thinkpad\AppData\Local\Temp\RSPC554.tmp" 
+Creating temporary file "C:\Users\Thinkpad\AppData\Local\Temp\RSPC555.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"Debug/" /Fp"Debug/线程同步.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\MyProjects\线程同步\线程同步.cpp"
+"D:\MyProjects\线程同步\线程同步Dlg.cpp"
+]
+Creating command line "cl.exe @C:\Users\Thinkpad\AppData\Local\Temp\RSPC555.tmp" 
+<h3>Output Window</h3>
+Compiling...
+StdAfx.cpp
+Compiling...
+线程同步.cpp
+线程同步Dlg.cpp
+Generating Code...
+Creating command line "link.exe /nologo /subsystem:windows /incremental:yes /pdb:"Debug/线程同步.pdb" /debug /machine:I386 /out:"Debug/线程同步.exe" /pdbtype:sept  ".\Debug\StdAfx.obj" ".\Debug\线程同步.obj" ".\Debug\线程同步Dlg.obj" ".\Debug\线程同步.res" "
+<h3>Output Window</h3>
+Linking...
+Creating command line "bscmake.exe /nologo /o"Debug/线程同步.bsc"  ".\Debug\StdAfx.sbr" ".\Debug\线程同步.sbr" ".\Debug\线程同步Dlg.sbr""
+Creating browse info file...
+<h3>Output Window</h3>
+
+
+
+<h3>Results</h3>
+线程同步.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

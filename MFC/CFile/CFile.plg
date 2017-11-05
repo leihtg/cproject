@@ -1,0 +1,27 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: CFile - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\Thinkpad\AppData\Local\Temp\RSPB31D.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/CFile.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\MyProjects\CFile\CFileDlg.cpp"
+]
+Creating command line "cl.exe @C:\Users\Thinkpad\AppData\Local\Temp\RSPB31D.tmp" 
+Creating command line "link.exe /nologo /subsystem:windows /incremental:yes /pdb:"Debug/CFile.pdb" /debug /machine:I386 /out:"Debug/CFile.exe" /pdbtype:sept  .\Debug\CFile.obj .\Debug\CFileDlg.obj .\Debug\StdAfx.obj .\Debug\CFile.res "
+<h3>Output Window</h3>
+Compiling...
+CFileDlg.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+CFile.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>
