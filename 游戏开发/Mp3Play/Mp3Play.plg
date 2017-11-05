@@ -1,0 +1,36 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: Mp3Play - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\Thinkpad\AppData\Local\Temp\RSP258C.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/Mp3Play.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ   /c 
+"D:\MyProjects\ÓÎÏ·¿ª·¢\Mp3Play\Mp3PlayDlg.cpp"
+]
+Creating command line "cl.exe @C:\Users\Thinkpad\AppData\Local\Temp\RSP258C.tmp" 
+Creating temporary file "C:\Users\Thinkpad\AppData\Local\Temp\RSP258D.tmp" with contents
+[
+/nologo /subsystem:windows /incremental:yes /pdb:"Debug/Mp3Play.pdb" /debug /machine:I386 /out:"Debug/Mp3Play.exe" /pdbtype:sept 
+".\Debug\Mp3Play.obj"
+".\Debug\Mp3PlayDlg.obj"
+".\Debug\StdAfx.obj"
+".\Debug\Mp3Play.res"
+".\Debug\MyPlayerControl.obj"
+]
+Creating command line "link.exe @C:\Users\Thinkpad\AppData\Local\Temp\RSP258D.tmp"
+<h3>Output Window</h3>
+Compiling...
+Mp3PlayDlg.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+Mp3Play.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>
