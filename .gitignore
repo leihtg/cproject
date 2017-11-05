@@ -1,3 +1,8 @@
 #gitignore
+
+#compile info
 **/Debug/
 **/Release/
+#vs file
+*.sdf
+**/ipch/

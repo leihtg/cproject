@@ -35,8 +35,12 @@ int main(int argc, char* argv[])
 {
 	//int i = atoi(" 1234A7af");
 	//printf("%d\n",i);
-	Student stu("a");
-	stu.show();
+	//Student stu("a");
+	//stu.show();
+	int a = 1;
+	int b = 2;
+	string str = "hello world!";
+	Student stu;
 	return 0;
 }
 
