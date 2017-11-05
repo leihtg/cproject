@@ -1,0 +1,71 @@
+// OcxDown.odl : type library source for ActiveX Control project.
+
+// This file will be processed by the Make Type Library (mktyplib) tool to
+// produce the type library (OcxDown.tlb) that will become a resource in
+// OcxDown.ocx.
+
+#include <olectl.h>
+#include <idispids.h>
+
+[ uuid(FB995D3D-66D6-4390-BD00-1FEC8278D5AF), version(1.0),
+  helpfile("OcxDown.hlp"),
+  helpstring("OcxDown ActiveX Control module"),
+  control ]
+library OCXDOWNLib
+{
+	importlib(STDOLE_TLB);
+	importlib(STDTYPE_TLB);
+
+	//  Primary dispatch interface for COcxDownCtrl
+
+	[ uuid(167F18A0-E691-4DAD-BD37-63B1308BAE7B),
+	  helpstring("Dispatch interface for OcxDown Control"), hidden ]
+	dispinterface _DOcxDown
+	{
+		properties:
+			// NOTE - ClassWizard will maintain property information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_PROP(COcxDownCtrl)
+			//}}AFX_ODL_PROP
+
+		methods:
+			// NOTE - ClassWizard will maintain method information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_METHOD(COcxDownCtrl)
+			[id(1)] void download();
+			[id(2)] void CCC();
+			//}}AFX_ODL_METHOD
+
+			[id(DISPID_ABOUTBOX)] void AboutBox();
+	};
+
+	//  Event dispatch interface for COcxDownCtrl
+
+	[ uuid(BD13C918-BB1D-4C27-835B-B6FBA17A1C37),
+	  helpstring("Event interface for OcxDown Control") ]
+	dispinterface _DOcxDownEvents
+	{
+		properties:
+			//  Event interface has no properties
+
+		methods:
+			// NOTE - ClassWizard will maintain event information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_EVENT(COcxDownCtrl)
+			//}}AFX_ODL_EVENT
+	};
+
+	//  Class information for COcxDownCtrl
+
+	[ uuid(CF31AED0-797A-416E-835C-374ED2578451),
+	  helpstring("OcxDown Control"), control ]
+	coclass OcxDown
+	{
+		[default] dispinterface _DOcxDown;
+		[default, source] dispinterface _DOcxDownEvents;
+	};
+
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};

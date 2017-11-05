@@ -1,0 +1,68 @@
+// dzDownloadPic.odl : type library source for ActiveX Control project.
+
+// This file will be processed by the Make Type Library (mktyplib) tool to
+// produce the type library (dzDownloadPic.tlb) that will become a resource in
+// dzDownloadPic.ocx.
+
+#include <olectl.h>
+#include <idispids.h>
+
+[ uuid(AC117223-9DC6-4F60-A010-17851674712D), version(1.0),
+  helpfile("dzDownloadPic.hlp"),
+  helpstring("dzDownloadPic ActiveX Control module"),
+  control ]
+library DZDOWNLOADPICLib
+{
+	importlib(STDOLE_TLB);
+	importlib(STDTYPE_TLB);
+
+	//  Primary dispatch interface for CDzDownloadPicCtrl
+
+	[ uuid(6DA65781-1988-4C7F-B8FC-E3BF63C2F6EB),
+	  helpstring("Dispatch interface for DzDownloadPic Control"), hidden ]
+	dispinterface _DDzDownloadPic
+	{
+		properties:
+			// NOTE - ClassWizard will maintain property information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_PROP(CDzDownloadPicCtrl)
+			//}}AFX_ODL_PROP
+
+		methods:
+			// NOTE - ClassWizard will maintain method information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_METHOD(CDzDownloadPicCtrl)
+			[id(1)] boolean getPic(BSTR remoteUrl, BSTR localPath);
+			//}}AFX_ODL_METHOD
+	};
+
+	//  Event dispatch interface for CDzDownloadPicCtrl
+
+	[ uuid(401FD0BB-355F-497D-B235-CAAC5294398F),
+	  helpstring("Event interface for DzDownloadPic Control") ]
+	dispinterface _DDzDownloadPicEvents
+	{
+		properties:
+			//  Event interface has no properties
+
+		methods:
+			// NOTE - ClassWizard will maintain event information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_EVENT(CDzDownloadPicCtrl)
+			//}}AFX_ODL_EVENT
+	};
+
+	//  Class information for CDzDownloadPicCtrl
+
+	[ uuid(03D99128-5C3B-4BD0-8A66-CD9321DA838B),
+	  helpstring("DzDownloadPic Control"), control ]
+	coclass DzDownloadPic
+	{
+		[default] dispinterface _DDzDownloadPic;
+		[default, source] dispinterface _DDzDownloadPicEvents;
+	};
+
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};

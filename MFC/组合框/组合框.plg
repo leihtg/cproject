@@ -1,0 +1,42 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: 组合框 - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\Thinkpad\AppData\Local\Temp\RSPE8AD.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"Debug/" /Fp"Debug/组合框.pch" /Yc"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\MyProjects\workspace\MFC\组合框\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\Users\Thinkpad\AppData\Local\Temp\RSPE8AD.tmp" 
+Creating temporary file "C:\Users\Thinkpad\AppData\Local\Temp\RSPE8AE.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"Debug/" /Fp"Debug/组合框.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\MyProjects\workspace\MFC\组合框\组合框.cpp"
+"D:\MyProjects\workspace\MFC\组合框\组合框Dlg.cpp"
+]
+Creating command line "cl.exe @C:\Users\Thinkpad\AppData\Local\Temp\RSPE8AE.tmp" 
+<h3>Output Window</h3>
+Compiling...
+StdAfx.cpp
+Compiling...
+组合框.cpp
+组合框Dlg.cpp
+Generating Code...
+Creating command line "link.exe /nologo /subsystem:windows /incremental:yes /pdb:"Debug/组合框.pdb" /debug /machine:I386 /out:"Debug/组合框.exe" /pdbtype:sept  ".\Debug\StdAfx.obj" ".\Debug\组合框.obj" ".\Debug\组合框Dlg.obj" ".\Debug\组合框.res" "
+<h3>Output Window</h3>
+Linking...
+Creating command line "bscmake.exe /nologo /o"Debug/组合框.bsc"  ".\Debug\StdAfx.sbr" ".\Debug\组合框.sbr" ".\Debug\组合框Dlg.sbr""
+Creating browse info file...
+<h3>Output Window</h3>
+
+
+
+<h3>Results</h3>
+组合框.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

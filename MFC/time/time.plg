@@ -1,0 +1,27 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: time - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\Users\Thinkpad\AppData\Local\Temp\RSP3B98.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/time.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ   /c 
+"D:\MyProjects\time\timeDlg.cpp"
+]
+Creating command line "cl.exe @C:\Users\Thinkpad\AppData\Local\Temp\RSP3B98.tmp" 
+Creating command line "link.exe /nologo /subsystem:windows /incremental:yes /pdb:"Debug/time.pdb" /debug /machine:I386 /out:"Debug/time.exe" /pdbtype:sept  .\Debug\time.obj .\Debug\timeDlg.obj .\Debug\StdAfx.obj .\Debug\time.res "
+<h3>Output Window</h3>
+Compiling...
+timeDlg.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+time.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

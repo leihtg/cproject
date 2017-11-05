@@ -1,0 +1,76 @@
+// time.odl : type library source for ActiveX Control project.
+
+// This file will be processed by the Make Type Library (mktyplib) tool to
+// produce the type library (time.tlb) that will become a resource in
+// time.ocx.
+
+#include <olectl.h>
+#include <idispids.h>
+
+[ uuid(A3E45347-32E3-4BF4-9231-37510F4D6AC0), version(1.0),
+  helpfile("time.hlp"),
+  helpstring("time ActiveX Control module"),
+  control ]
+library TIMELib
+{
+	importlib(STDOLE_TLB);
+	importlib(STDTYPE_TLB);
+
+	//  Primary dispatch interface for CTimeCtrl
+
+	[ uuid(204C1ED0-C9E0-4AC1-BEAA-D5AF18241EF1),
+	  helpstring("Dispatch interface for Time Control"), hidden ]
+	dispinterface _DTime
+	{
+		properties:
+			// NOTE - ClassWizard will maintain property information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_PROP(CTimeCtrl)
+			[id(DISPID_BACKCOLOR), bindable, requestedit] OLE_COLOR BackColor;
+			[id(DISPID_FORECOLOR), bindable, requestedit] OLE_COLOR ForeColor;
+			[id(1)] short interval;
+			[id(2)] long myTestVar;
+			//}}AFX_ODL_PROP
+
+		methods:
+			// NOTE - ClassWizard will maintain method information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_METHOD(CTimeCtrl)
+			[id(3)] void Hello();
+			//}}AFX_ODL_METHOD
+
+			[id(DISPID_ABOUTBOX)] void AboutBox();
+	};
+
+	//  Event dispatch interface for CTimeCtrl
+
+	[ uuid(FA62694A-55E7-4509-9C54-2482184DB86A),
+	  helpstring("Event interface for Time Control") ]
+	dispinterface _DTimeEvents
+	{
+		properties:
+			//  Event interface has no properties
+
+		methods:
+			// NOTE - ClassWizard will maintain event information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_EVENT(CTimeCtrl)
+			[id(DISPID_CLICK)] void Click();
+			[id(1)] void NewMinute();
+			//}}AFX_ODL_EVENT
+	};
+
+	//  Class information for CTimeCtrl
+
+	[ uuid(7F53FA32-8C1C-462A-9BE8-70112F44B541),
+	  helpstring("Time Control"), control ]
+	coclass Time
+	{
+		[default] dispinterface _DTime;
+		[default, source] dispinterface _DTimeEvents;
+	};
+
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};

@@ -1,0 +1,5 @@
+LIBRARY "DefExprotDll"
+DESCRIPTION "йтр╩об"
+EXPORTS
+Fun @1
+add @2
