@@ -5,4 +5,6 @@
 **/Release/
 #vs file
 *.sdf
+*.opensdf
+*.suo
 **/ipch/
