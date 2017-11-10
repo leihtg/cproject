@@ -53,12 +53,15 @@ BOOL CDynamicPicDemoApp::InitInstance()
 #else
 	Enable3dControlsStatic();	// Call this when linking to MFC statically
 #endif
-
 	CDynamicPicDemoDlg dlg;
 	m_pMainWnd = &dlg;
 	int nResponse = dlg.DoModal();
+	printf("hello\n");
+	system("pause");
 	if (nResponse == IDOK)
 	{
+	
+
 		// TODO: Place code here to handle when the dialog is
 		//  dismissed with OK
 	}

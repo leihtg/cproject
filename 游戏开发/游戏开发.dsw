@@ -39,18 +39,6 @@ Package=<4>
 
 ###############################################################################
 
-Project: "Hello"=".\Hello\Hello.dsp" - Package Owner=<4>
-
-Package=<5>
-{{{
-}}}
-
-Package=<4>
-{{{
-}}}
-
-###############################################################################
-
 Project: "KeyMessageDemo"=".\KeyMessageDemo\KeyMessageDemo.dsp" - Package Owner=<4>
 
 Package=<5>

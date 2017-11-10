@@ -15,9 +15,9 @@ Class3=CPicBrowserView
 Class4=CMainFrame
 
 ResourceCount=2
-Resource1=IDR_MAINFRAME
+Resource1=IDD_ABOUTBOX
 Class5=CAboutDlg
-Resource2=IDD_ABOUTBOX
+Resource2=IDR_MAINFRAME
 
 [CLS:CPicBrowserApp]
 Type=0
@@ -38,7 +38,7 @@ ImplementationFile=PicBrowserView.cpp
 Filter=C
 BaseClass=CHtmlView
 VirtualFilter=7VWC
-LastObject=ID_BROWER_BTN
+LastObject=CPicBrowserView
 
 
 [CLS:CMainFrame]

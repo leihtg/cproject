@@ -13,8 +13,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "stack", "..\stack\stack\sta
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "structAsm", "..\structAsm\structAsm\structAsm.vcxproj", "{81483BBE-FF57-4F4C-8E71-BB5273919DF7}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test", "..\test\test\test.vcxproj", "{E750C560-6BE0-41A2-A0B7-1A7FEABA65A8}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinDeo", "..\WinDeo\WinDeo\WinDeo.vcxproj", "{14313F12-8A3E-4BD7-8373-9B294D152577}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "原始套接字1", "..\原始套接字1\原始套接字1\原始套接字1.vcxproj", "{96A80059-0C2F-4334-8F24-107C151BE629}"
@@ -91,16 +89,6 @@ Global
 		{81483BBE-FF57-4F4C-8E71-BB5273919DF7}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{81483BBE-FF57-4F4C-8E71-BB5273919DF7}.Release|Win32.ActiveCfg = Release|Win32
 		{81483BBE-FF57-4F4C-8E71-BB5273919DF7}.Release|Win32.Build.0 = Release|Win32
-		{E750C560-6BE0-41A2-A0B7-1A7FEABA65A8}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{E750C560-6BE0-41A2-A0B7-1A7FEABA65A8}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
-		{E750C560-6BE0-41A2-A0B7-1A7FEABA65A8}.Debug|Mixed Platforms.Build.0 = Debug|Win32
-		{E750C560-6BE0-41A2-A0B7-1A7FEABA65A8}.Debug|Win32.ActiveCfg = Debug|Win32
-		{E750C560-6BE0-41A2-A0B7-1A7FEABA65A8}.Debug|Win32.Build.0 = Debug|Win32
-		{E750C560-6BE0-41A2-A0B7-1A7FEABA65A8}.Release|Any CPU.ActiveCfg = Release|Win32
-		{E750C560-6BE0-41A2-A0B7-1A7FEABA65A8}.Release|Mixed Platforms.ActiveCfg = Release|Win32
-		{E750C560-6BE0-41A2-A0B7-1A7FEABA65A8}.Release|Mixed Platforms.Build.0 = Release|Win32
-		{E750C560-6BE0-41A2-A0B7-1A7FEABA65A8}.Release|Win32.ActiveCfg = Release|Win32
-		{E750C560-6BE0-41A2-A0B7-1A7FEABA65A8}.Release|Win32.Build.0 = Release|Win32
 		{14313F12-8A3E-4BD7-8373-9B294D152577}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{14313F12-8A3E-4BD7-8373-9B294D152577}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
 		{14313F12-8A3E-4BD7-8373-9B294D152577}.Debug|Mixed Platforms.Build.0 = Debug|Win32

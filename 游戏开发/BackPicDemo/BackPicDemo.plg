@@ -6,10 +6,8 @@
 --------------------Configuration: BackPicDemo - Win32 Debug--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating command line "rc.exe /l 0x804 /fo"Debug/BackPicDemo.res" /d "_DEBUG" /d "_AFXDLL" "D:\MyProjects\ÓÎÏ·¿ª·¢\BackPicDemo\BackPicDemo.rc"" 
 Creating command line "link.exe /nologo /subsystem:windows /incremental:yes /pdb:"Debug/BackPicDemo.pdb" /debug /machine:I386 /out:"Debug/BackPicDemo.exe" /pdbtype:sept  ".\Debug\BackPicDemo.obj" ".\Debug\BackPicDemoDlg.obj" ".\Debug\StdAfx.obj" ".\Debug\BackPicDemo.res" "
 <h3>Output Window</h3>
-Compiling resources...
 Linking...
 
 

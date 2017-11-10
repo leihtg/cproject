@@ -14,10 +14,10 @@ Class2=CMouseTraceDoc
 Class3=CMouseTraceView
 Class4=CMainFrame
 
-ResourceCount=6
-Resource1=IDD_ABOUTBOX
-Resource2=IDR_MAINFRAME
+ResourceCount=2
+Resource1=IDR_MAINFRAME
 Class5=CAboutDlg
+Resource2=IDD_ABOUTBOX
 
 [CLS:CMouseTraceApp]
 Type=0

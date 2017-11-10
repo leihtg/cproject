@@ -13,12 +13,12 @@ Class2=CFiveChessDlg
 Class3=CAboutDlg
 
 ResourceCount=5
-Resource1=IDD_ABOUTBOX
+Resource1=IDR_MAIN_MENU
 Resource2=IDR_MAINFRAME
-Resource3=IDD_FIVECHESS_DIALOG
-Resource4=IDD_DIALOG1
+Resource3=IDD_DIALOG1
+Resource4=IDD_ABOUTBOX
 Class4=CsetupDlg
-Resource5=IDR_MAIN_MENU
+Resource5=IDD_FIVECHESS_DIALOG
 
 [CLS:CFiveChessApp]
 Type=0
@@ -83,6 +83,6 @@ HeaderFile=setupDlg.h
 ImplementationFile=setupDlg.cpp
 BaseClass=CDialog
 Filter=D
-LastObject=IDC_CLIENT_OPTION
+LastObject=CsetupDlg
 VirtualFilter=dWC
 

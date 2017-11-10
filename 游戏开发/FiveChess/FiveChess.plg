@@ -6,23 +6,32 @@
 --------------------Configuration: FiveChess - Win32 Debug--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating temporary file "C:\Users\Thinkpad\AppData\Local\Temp\RSP500C.tmp" with contents
+Creating temporary file "C:\Users\Thinkpad\AppData\Local\Temp\RSP3D05.tmp" with contents
 [
 /nologo /subsystem:windows /incremental:yes /pdb:"Debug/FiveChess.pdb" /debug /machine:I386 /out:"Debug/FiveChess.exe" /pdbtype:sept 
 ".\Debug\FiveChess.obj"
 ".\Debug\FiveChessDlg.obj"
+".\Debug\setupDlg.obj"
 ".\Debug\StdAfx.obj"
 ".\Debug\FiveChess.res"
-".\Debug\setupDlg.obj"
+".\Debug\BackPicDemoDlg.obj"
 ]
-Creating command line "link.exe @C:\Users\Thinkpad\AppData\Local\Temp\RSP500C.tmp"
+Creating command line "link.exe @C:\Users\Thinkpad\AppData\Local\Temp\RSP3D05.tmp"
 <h3>Output Window</h3>
 Linking...
+BackPicDemoDlg.obj : error LNK2005: "public: __thiscall CAboutDlg::CAboutDlg(void)" (??0CAboutDlg@@QAE@XZ) already defined in FiveChessDlg.obj
+BackPicDemoDlg.obj : error LNK2005: "protected: virtual void __thiscall CAboutDlg::DoDataExchange(class CDataExchange *)" (?DoDataExchange@CAboutDlg@@MAEXPAVCDataExchange@@@Z) already defined in FiveChessDlg.obj
+BackPicDemoDlg.obj : error LNK2005: "protected: static struct AFX_MSGMAP const * __stdcall CAboutDlg::_GetBaseMessageMap(void)" (?_GetBaseMessageMap@CAboutDlg@@KGPBUAFX_MSGMAP@@XZ) already defined in FiveChessDlg.obj
+BackPicDemoDlg.obj : error LNK2005: "protected: virtual struct AFX_MSGMAP const * __thiscall CAboutDlg::GetMessageMap(void)const " (?GetMessageMap@CAboutDlg@@MBEPBUAFX_MSGMAP@@XZ) already defined in FiveChessDlg.obj
+BackPicDemoDlg.obj : error LNK2005: "protected: static struct AFX_MSGMAP const CAboutDlg::messageMap" (?messageMap@CAboutDlg@@1UAFX_MSGMAP@@B) already defined in FiveChessDlg.obj
+BackPicDemoDlg.obj : error LNK2005: "private: static struct AFX_MSGMAP_ENTRY const * const CAboutDlg::_messageEntries" (?_messageEntries@CAboutDlg@@0QBUAFX_MSGMAP_ENTRY@@B) already defined in FiveChessDlg.obj
+Debug/FiveChess.exe : fatal error LNK1169: one or more multiply defined symbols found
+Error executing link.exe.
 
 
 
 <h3>Results</h3>
-FiveChess.exe - 0 error(s), 0 warning(s)
+FiveChess.exe - 7 error(s), 0 warning(s)
 </pre>
 </body>
 </html>

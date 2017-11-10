@@ -22,6 +22,7 @@ Type=0
 HeaderFile=BackPicDemo.h
 ImplementationFile=BackPicDemo.cpp
 Filter=N
+LastObject=CBackPicDemoApp
 
 [CLS:CBackPicDemoDlg]
 Type=0
