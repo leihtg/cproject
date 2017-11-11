@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="Workspace">
+		<Project filename="projects/strategy/strategy.cbp" />
+		<Project filename="../../CodeBlock/projects/socketHandler/socketHandler.cbp" />
+		<Project filename="../../CodeBlock/projects/rawSocket/rawSocket.cbp" />
+		<Project filename="projects/Sort/Sort.cbp" />
+		<Project filename="projects/递归/递归.cbp" />
+	</Workspace>
+</CodeBlocks_workspace_file>

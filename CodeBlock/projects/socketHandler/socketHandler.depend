@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1477666992 source:d:\myprojects\codeblock\projects\sockethandler\main.cpp
+	<iostream>
+	"SocketServer.h"
+
+1477665332 d:\myprojects\codeblock\projects\sockethandler\include\socketserver.h
+	<winsock2.h>
+	<iostream>
+	<string>
+
+1477712687 source:d:\myprojects\codeblock\projects\sockethandler\src\socketserver.cpp
+	"SocketServer.h"
+

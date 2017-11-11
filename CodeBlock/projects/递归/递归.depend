@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1473474606 source:d:\users\leihuating\workspace\codeblock\projects\ตÝน้\main.cpp
+	<iostream>
+	<vector>
+	<iterator>
+
+1484572789 source:d:\myprojects\workspace\codeblock\projects\ตÝน้\main.cpp
+	<iostream>
+	<vector>
+	<algorithm>
+	<iterator>
+

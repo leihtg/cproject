@@ -1,0 +1,70 @@
+# depslib dependency file v1.0
+1473506791 source:d:\myprojects\codeblock\projects\sort\main.cpp
+	<iostream>
+	"SelectionSort.h"
+
+1473562636 d:\myprojects\codeblock\projects\sort\include\selectionsort.h
+	<string>
+	<sstream>
+	<iostream>
+	"whole.h"
+
+1473561957 source:d:\myprojects\codeblock\projects\sort\src\selectionsort.cpp
+	"SelectionSort.h"
+
+1473562132 source:d:\myprojects\codeblock\projects\sort\src\illegalparametervalue.cpp
+	"illegalParameterValue.h"
+
+1473562170 d:\myprojects\codeblock\projects\sort\include\illegalparametervalue.h
+	<string>
+	<iostream>
+
+1473561996 d:\myprojects\codeblock\projects\sort\include\whole.h
+	"illegalParameterValue.h"
+
+1473562132 source:d:\users\leihuating\workspace\codeblock\projects\sort\src\illegalparametervalue.cpp
+	"illegalParameterValue.h"
+
+1473561957 source:d:\users\leihuating\workspace\codeblock\projects\sort\src\selectionsort.cpp
+	"SelectionSort.h"
+
+1473740929 source:d:\users\leihuating\workspace\codeblock\projects\sort\main.cpp
+	<iostream>
+	"SelectionSort.h"
+
+1473562636 d:\users\leihuating\workspace\codeblock\projects\sort\include\selectionsort.h
+	<string>
+	<sstream>
+	<iostream>
+	"whole.h"
+
+1473561996 d:\users\leihuating\workspace\codeblock\projects\sort\include\whole.h
+	"illegalParameterValue.h"
+
+1473562170 d:\users\leihuating\workspace\codeblock\projects\sort\include\illegalparametervalue.h
+	<string>
+	<iostream>
+
+1483621903 source:d:\myprojects\workspace\codeblock\projects\sort\main.cpp
+	<iostream>
+	"SelectionSort.h"
+
+1483532822 d:\myprojects\workspace\codeblock\projects\sort\include\selectionsort.h
+	<string>
+	<sstream>
+	<iostream>
+	"whole.h"
+
+1473561996 d:\myprojects\workspace\codeblock\projects\sort\include\whole.h
+	"illegalParameterValue.h"
+
+1473562170 d:\myprojects\workspace\codeblock\projects\sort\include\illegalparametervalue.h
+	<string>
+	<iostream>
+
+1473562132 source:d:\myprojects\workspace\codeblock\projects\sort\src\illegalparametervalue.cpp
+	"illegalParameterValue.h"
+
+1473561957 source:d:\myprojects\workspace\codeblock\projects\sort\src\selectionsort.cpp
+	"SelectionSort.h"
+

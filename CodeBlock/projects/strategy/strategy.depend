@@ -1,0 +1,69 @@
+# depslib dependency file v1.0
+1473654396 source:d:\project\strategy\main.cpp
+	<iostream>
+	"Buffer.h"
+
+1470979025 source:d:\project\strategy\src\observer.cpp
+	"Observer.h"
+	<iostream>
+
+1470963660 d:\project\strategy\include\observer.h
+
+1473654460 source:d:\project\strategy\src\buffer.cpp
+	"Buffer.h"
+	<iostream>
+	<stdio.h>
+	<string>
+	<stdlib.h>
+	<sstream>
+
+1473653327 d:\project\strategy\include\buffer.h
+
+1476953183 source:d:\users\leihuating\workspace\codeblock\projects\strategy\main.cpp
+	<iostream>
+	"Buffer.h"
+	"ParseByte.h"
+
+1473867847 d:\users\leihuating\workspace\codeblock\projects\strategy\include\buffer.h
+	<iostream>
+
+1473814719 source:d:\users\leihuating\workspace\codeblock\projects\strategy\src\buffer.cpp
+	"Buffer.h"
+	<iostream>
+	<stdio.h>
+	<string>
+	<stdlib.h>
+	<sstream>
+
+1473814719 source:d:\myprojects\workspace\codeblock\projects\strategy\src\buffer.cpp
+	"Buffer.h"
+	<iostream>
+	<stdio.h>
+	<string>
+	<stdlib.h>
+	<sstream>
+
+1473867847 d:\myprojects\workspace\codeblock\projects\strategy\include\buffer.h
+	<iostream>
+
+1476966353 source:d:\myprojects\workspace\codeblock\projects\strategy\main.cpp
+	<iostream>
+	"Buffer.h"
+	"ParseByte.h"
+
+1476950824 d:\users\leihuating\workspace\codeblock\projects\strategy\include\parsebyte.h
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+
+1476954053 source:d:\users\leihuating\workspace\codeblock\projects\strategy\src\parsebyte.cpp
+	"ParseByte.h"
+
+1476965586 d:\myprojects\workspace\codeblock\projects\strategy\include\parsebyte.h
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+
+1476965950 source:d:\myprojects\workspace\codeblock\projects\strategy\src\parsebyte.cpp
+	"ParseByte.h"
+

@@ -1,0 +1,29 @@
+# depslib dependency file v1.0
+1478351074 source:d:\myprojects\codeblock\projects\rawsocket\main.cpp
+	"RawSocket.h"
+	"FileUtil.h"
+
+1477731537 d:\myprojects\codeblock\projects\rawsocket\sniffer.h
+	<winsock2.h>
+
+1477726091 d:\myprojects\codeblock\projects\rawsocket\mstcpip.h
+
+1477731813 d:\myprojects\codeblock\projects\rawsocket\include\rawsocket.h
+	<iostream>
+	"sniffer.h"
+	"mstcpip.h"
+
+1478351367 source:d:\myprojects\codeblock\projects\rawsocket\src\rawsocket.cpp
+	"RawSocket.h"
+
+1477746615 d:\myprojects\codeblock\projects\rawsocket\include\sniffer.h
+	<winsock2.h>
+
+1477726091 d:\myprojects\codeblock\projects\rawsocket\include\mstcpip.h
+
+1478348749 d:\myprojects\codeblock\projects\rawsocket\include\fileutil.h
+	<stdio.h>
+
+1483531122 source:d:\myprojects\codeblock\projects\rawsocket\src\fileutil.cpp
+	"FileUtil.h"
+
