@@ -46,7 +46,7 @@ protected:
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
-	afx_msg void recvData(WPARAM wp,LPARAM lp);
+	afx_msg LRESULT recvData(WPARAM wp, LPARAM lp);
 	afx_msg void OnBtnSend();
 	afx_msg void Onsendfile();
 	afx_msg void OnUpdatesendfile(CCmdUI* pCmdUI);

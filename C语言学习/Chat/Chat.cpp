@@ -43,7 +43,7 @@ CChatApp theApp;
 BOOL CChatApp::InitInstance()
 {
 	if(!AfxSocketInit()){
-		AfxMessageBox("º”‘ÿsocket ß∞‹£°");
+		AfxMessageBox(L"º”‘ÿsocket ß∞‹£°");
 		return false;
 	}
 	AfxEnableControlContainer();
