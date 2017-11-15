@@ -252,8 +252,11 @@ void CChatDlg::OnBtnSend()
 
 	CString strSend;
 	GetDlgItemText(IDC_EDIT_SEND, strSend);
-	
-	sendto(m_socket, (LPCTSTR)strSend, strSend.GetLength() + 1, 0, (SOCKADDR*)&addrTo, sizeof(SOCKADDR));
+	int size = WideCharToMultiByte(CP_ACP, 0, strSend, -1, NULL, 0, NULL, NULL);
+	if (size <= 1)return;
+	char* ch = new char[size + 1];
+	WideCharToMultiByte(CP_ACP, 0, strSend, -1, ch, size, NULL, NULL);
+	sendto(m_socket, ch, size, 0, (SOCKADDR*)&addrTo, sizeof(SOCKADDR));
 	SetDlgItemText(IDC_EDIT_SEND, _T(""));
 }
 DWORD CChatDlg::GetIP(){
