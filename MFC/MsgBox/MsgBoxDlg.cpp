@@ -19,18 +19,18 @@ class CAboutDlg : public CDialog
 public:
 	CAboutDlg();
 
-// Dialog Data
+	// Dialog Data
 	//{{AFX_DATA(CAboutDlg)
 	enum { IDD = IDD_ABOUTBOX };
 	//}}AFX_DATA
 
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CAboutDlg)
-	protected:
+protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	//}}AFX_VIRTUAL
 
-// Implementation
+	// Implementation
 protected:
 	//{{AFX_MSG(CAboutDlg)
 	//}}AFX_MSG
@@ -52,7 +52,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
 	//{{AFX_MSG_MAP(CAboutDlg)
-		// No message handlers
+	// No message handlers
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -60,14 +60,14 @@ END_MESSAGE_MAP()
 // CMsgBoxDlg dialog
 
 CMsgBoxDlg::CMsgBoxDlg(CWnd* pParent /*=NULL*/)
-	: CDialog(CMsgBoxDlg::IDD, pParent)
+: CDialog(CMsgBoxDlg::IDD, pParent)
 {
 	//{{AFX_DATA_INIT(CMsgBoxDlg)
-		// NOTE: the ClassWizard will add member initialization here
+	// NOTE: the ClassWizard will add member initialization here
 	//}}AFX_DATA_INIT
 	// Note that LoadIcon does not require a subsequent DestroyIcon in Win32
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
-	i=0;
+	i = 0;
 
 
 }
@@ -76,7 +76,7 @@ void CMsgBoxDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CMsgBoxDlg)
-		// NOTE: the ClassWizard will add DDX and DDV calls here
+	// NOTE: the ClassWizard will add DDX and DDV calls here
 	//}}AFX_DATA_MAP
 }
 
@@ -120,9 +120,9 @@ BOOL CMsgBoxDlg::OnInitDialog()
 	//  when the application's main window is not a dialog
 	SetIcon(m_hIcon, TRUE);			// Set big icon
 	SetIcon(m_hIcon, FALSE);		// Set small icon
-	
+
 	// TODO: Add extra initialization here
-	
+
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
 
@@ -143,13 +143,13 @@ void CMsgBoxDlg::OnSysCommand(UINT nID, LPARAM lParam)
 //  to draw the icon.  For MFC applications using the document/view model,
 //  this is automatically done for you by the framework.
 
-void CMsgBoxDlg::OnPaint() 
+void CMsgBoxDlg::OnPaint()
 {
 	if (IsIconic())
 	{
 		CPaintDC dc(this); // device context for painting
 
-		SendMessage(WM_ICONERASEBKGND, (WPARAM) dc.GetSafeHdc(), 0);
+		SendMessage(WM_ICONERASEBKGND, (WPARAM)dc.GetSafeHdc(), 0);
 
 		// Center icon in client rectangle
 		int cxIcon = GetSystemMetrics(SM_CXICON);
@@ -158,95 +158,96 @@ void CMsgBoxDlg::OnPaint()
 		GetClientRect(&rect);
 		int x = (rect.Width() - cxIcon + 1) / 2;
 		int y = (rect.Height() - cyIcon + 1) / 2;
- 
+
 		// Draw the icon
-	
+
 		dc.DrawIcon(x, y, m_hIcon);
 	}
 	else
 	{
 		CDialog::OnPaint();
 	}
-	
+
 }
 
 // The system calls this to obtain the cursor to display while the user drags
 //  the minimized window.
 HCURSOR CMsgBoxDlg::OnQueryDragIcon()
 {
-	return (HCURSOR) m_hIcon;
+	return (HCURSOR)m_hIcon;
 }
 
-void CMsgBoxDlg::OnOK() 
+void CMsgBoxDlg::OnOK()
 {
 	// TODO: Add extra validation here
-	
-	CColorDialog dlg(crColor,CC_FULLOPEN);
-	if(dlg.DoModal()==IDOK){
-		crColor=dlg.GetColor();
+
+	CColorDialog dlg(crColor, CC_FULLOPEN);
+	if (dlg.DoModal() == IDOK){
+		crColor = dlg.GetColor();
 		CBrush brush(crColor);
 		CClientDC d(AfxGetMainWnd());
 		d.SelectObject(&brush);
-		d.Ellipse(10,10,200,120);
-		
-		
-		
+		d.Ellipse(10, 10, 200, 120);
+
+
+
 	}
-	
+
 }
 
-void CMsgBoxDlg::OnFile() 
+void CMsgBoxDlg::OnFile()
 {
-	
-	CFileDialog dlg(true,".txt","hello.txt",OFN_FILEMUSTEXIST|OFN_HIDEREADONLY,"*.*|*.*||");	
-	if(dlg.DoModal()==IDOK){
-		CString p=dlg.GetFileName();
+
+	CFileDialog dlg(true, _T(".txt"), _T("hello.txt"), OFN_FILEMUSTEXIST | OFN_HIDEREADONLY, _T("*.*|*.*||"));
+	if (dlg.DoModal() == IDOK){
+		CString p = dlg.GetFileName();
 		SetWindowText(p);
 	}
 }
 
-void CMsgBoxDlg::OnFont() 
+void CMsgBoxDlg::OnFont()
 {
-	
+
 	LOGFONT lf;
-	memset(&lf,0,sizeof(LOGFONT));
-	if(i!=0){
+	memset(&lf, 0, sizeof(LOGFONT));
+	if (i != 0){
 		fnt.GetLogFont(&lf);
 	}
 	i++;
-	CFontDialog dlg(&lf,CF_EFFECTS|CF_SCREENFONTS,0,this);	
-	if(dlg.DoModal()==IDOK){
+	CFontDialog dlg(&lf, CF_EFFECTS | CF_SCREENFONTS, 0, this);
+	if (dlg.DoModal() == IDOK){
 		LOGFONT n;
 		dlg.GetCurrentFont(&n);
 
 		fnt.DeleteObject();
 		fnt.CreateFontIndirect(&n);
-		
-		CClientDC dc(this);	
-		
+
+		CClientDC dc(this);
+
 		dc.SelectObject(&fnt);
-		
-		dc.TextOut(100,100,"使用字体对话框");
-		
+
+		dc.TextOut(100, 100, "使用字体对话框");
+
 	}
 }
 
-void CMsgBoxDlg::OnPrint() 
+void CMsgBoxDlg::OnPrint()
 {
-	CPrintDialog dlg(false,PD_PAGENUMS|PD_USEDEVMODECOPIES);
-	dlg.m_pd.nMinPage=dlg.m_pd.nFromPage=1;
-	dlg.m_pd.nMaxPage=dlg.m_pd.nToPage=10;
-	if(dlg.DoModal()==IDOK){
-		int from_page,to_page;
-		if(dlg.PrintAll()){
-			from_page=dlg.m_pd.nMinPage;
-			to_page=dlg.m_pd.nMaxPage;
+	CPrintDialog dlg(false, PD_PAGENUMS | PD_USEDEVMODECOPIES);
+	dlg.m_pd.nMinPage = dlg.m_pd.nFromPage = 1;
+	dlg.m_pd.nMaxPage = dlg.m_pd.nToPage = 10;
+	if (dlg.DoModal() == IDOK){
+		int from_page, to_page;
+		if (dlg.PrintAll()){
+			from_page = dlg.m_pd.nMinPage;
+			to_page = dlg.m_pd.nMaxPage;
 		}
-		else if(dlg.PrintRange()){
-			from_page=dlg.GetFromPage();
-			to_page=dlg.GetToPage();
-		}else if(dlg.PrintSelection()){
-			from_page=to_page=-1;
+		else if (dlg.PrintRange()){
+			from_page = dlg.GetFromPage();
+			to_page = dlg.GetToPage();
+		}
+		else if (dlg.PrintSelection()){
+			from_page = to_page = -1;
 		}
 
 	}
