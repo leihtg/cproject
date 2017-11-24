@@ -1,8 +1,8 @@
 #include "sniffer.h"
 #include "mstcpip.h"
 #include "stdio.h"
-#include <iostream.h>
-
+#include <iostream>
+using namespace std;
 int main(int args,char *agrv[]){
 	WORD wVersionRequested;
 	WSADATA wsaData;
@@ -34,7 +34,7 @@ int main(int args,char *agrv[]){
 		closesocket(m_s);
 		return 1;
 	}
-	 
+	
 	SOCKADDR_IN sa;
 	sa.sin_family=AF_INET;
 	sa.sin_port=htons(7000);
@@ -45,11 +45,11 @@ int main(int args,char *agrv[]){
 		cout<<"bind error ´íÎóÂë£º"<<dwErr<<endl;
 		return 1;
 	}
-
+	
 	DWORD dwBufferLen[10];
 	DWORD dwBufferInLen=1;
 	DWORD dwBytesReturned=0;
-
+	
 	if(SOCKET_ERROR!=WSAIoctl(m_s,SIO_RCVALL,&dwBufferInLen,sizeof(dwBufferInLen),&dwBufferLen,sizeof(dwBufferLen),&dwBytesReturned,NULL,NULL)){
 		cout<<"ÒÑ³É¹¦£¬ÇëÉÔºò¡£¡£¡£"<<endl;
 	}else{
@@ -59,7 +59,7 @@ int main(int args,char *agrv[]){
 		WSACleanup();
 		return 1;
 	}
-
+	
 	char buf[1024]={0};
 	int iRet;
 	FILE *fp=fopen("C:\\Users\\Thinkpad\\Desktop\\ip.txt","wb");

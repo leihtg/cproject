@@ -2,15 +2,15 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{2b8873a4-d5cf-4b2a-b3a3-611f103d99aa}</UniqueIdentifier>
+      <UniqueIdentifier>{5f644f3e-bb2b-43e2-b3ab-d49b2bda553f}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{7cead647-e4e5-42a4-941e-820bbe379c12}</UniqueIdentifier>
+      <UniqueIdentifier>{594d84b5-f339-49aa-af75-4061c7d27566}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="Resource Files">
-      <UniqueIdentifier>{c752c4d0-0298-4229-9282-59774fd5e9fb}</UniqueIdentifier>
+      <UniqueIdentifier>{7b26bcc3-5465-4f4e-a0dc-695185b2fe4c}</UniqueIdentifier>
       <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
     </Filter>
   </ItemGroup>
@@ -18,5 +18,13 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="mstcpip.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sniffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

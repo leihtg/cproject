@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "获取主机名", "获取主机名.vcxproj", "{43296F2E-A72E-4C09-8CE6-541BB22BB797}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "抓包", "..\抓包\抓包.vcxproj", "{EB7A98B7-BD5F-43B8-A899-ED97ACAF1753}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+		Template|Win32 = Template|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{43296F2E-A72E-4C09-8CE6-541BB22BB797}.Debug|Win32.ActiveCfg = Debug|Win32
+		{43296F2E-A72E-4C09-8CE6-541BB22BB797}.Debug|Win32.Build.0 = Debug|Win32
+		{43296F2E-A72E-4C09-8CE6-541BB22BB797}.Release|Win32.ActiveCfg = Release|Win32
+		{43296F2E-A72E-4C09-8CE6-541BB22BB797}.Release|Win32.Build.0 = Release|Win32
+		{43296F2E-A72E-4C09-8CE6-541BB22BB797}.Template|Win32.ActiveCfg = Release|Win32
+		{43296F2E-A72E-4C09-8CE6-541BB22BB797}.Template|Win32.Build.0 = Release|Win32
+		{EB7A98B7-BD5F-43B8-A899-ED97ACAF1753}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EB7A98B7-BD5F-43B8-A899-ED97ACAF1753}.Debug|Win32.Build.0 = Debug|Win32
+		{EB7A98B7-BD5F-43B8-A899-ED97ACAF1753}.Release|Win32.ActiveCfg = Release|Win32
+		{EB7A98B7-BD5F-43B8-A899-ED97ACAF1753}.Release|Win32.Build.0 = Release|Win32
+		{EB7A98B7-BD5F-43B8-A899-ED97ACAF1753}.Template|Win32.ActiveCfg = Template|Win32
+		{EB7A98B7-BD5F-43B8-A899-ED97ACAF1753}.Template|Win32.Build.0 = Template|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
