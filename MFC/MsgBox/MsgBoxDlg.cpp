@@ -89,6 +89,7 @@ BEGIN_MESSAGE_MAP(CMsgBoxDlg, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON2, OnFont)
 	ON_BN_CLICKED(IDC_BUTTON3, OnPrint)
 	//}}AFX_MSG_MAP
+//	ON_WM_PALETTECHANGED()
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -252,3 +253,11 @@ void CMsgBoxDlg::OnPrint()
 
 	}
 }
+
+
+//void CMsgBoxDlg::OnPaletteChanged(CWnd* pFocusWnd)
+//{
+//	CDialog::OnPaletteChanged(pFocusWnd);
+//
+//	// TODO:  在此处添加消息处理程序代码
+//}
