@@ -13,11 +13,11 @@ Class2=CChatDlg
 Class3=CAboutDlg
 
 ResourceCount=6
-Resource1=IDR_MENU1
+Resource1=IDD_ABOUTBOX
 Resource2=IDR_MAINFRAME
-Resource3=IDD_DIALOG1
-Resource4=IDD_CHAT_DIALOG
-Resource5=IDD_ABOUTBOX
+Resource3=IDR_MENU1
+Resource4=IDD_DIALOG1
+Resource5=IDD_CHAT_DIALOG
 Class4=CProcessDlg
 Class5=CShowThread
 Resource6=IDR_ACCELERATOR1
@@ -87,7 +87,7 @@ HeaderFile=ProcessDlg.h
 ImplementationFile=ProcessDlg.cpp
 BaseClass=CDialog
 Filter=D
-LastObject=IDC_PROGRESS1
+LastObject=CProcessDlg
 VirtualFilter=dWC
 
 [CLS:CShowThread]
@@ -96,4 +96,5 @@ HeaderFile=ShowThread.h
 ImplementationFile=ShowThread.cpp
 BaseClass=CWinThread
 Filter=N
+LastObject=CShowThread
 
