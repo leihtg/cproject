@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "friend", "friend\friend.vcxproj", "{DA70B8DF-2CEA-4EE3-95F0-5091CF71BA46}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "operator", "operator\operator.vcxproj", "{1115C239-7360-46F9-B5A8-968885442CBF}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Thread", "Thread\Thread.vcxproj", "{886E832C-3081-4751-99A3-18E5E1876806}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA70B8DF-2CEA-4EE3-95F0-5091CF71BA46}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DA70B8DF-2CEA-4EE3-95F0-5091CF71BA46}.Debug|Win32.Build.0 = Debug|Win32
+		{DA70B8DF-2CEA-4EE3-95F0-5091CF71BA46}.Release|Win32.ActiveCfg = Release|Win32
+		{DA70B8DF-2CEA-4EE3-95F0-5091CF71BA46}.Release|Win32.Build.0 = Release|Win32
+		{1115C239-7360-46F9-B5A8-968885442CBF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1115C239-7360-46F9-B5A8-968885442CBF}.Debug|Win32.Build.0 = Debug|Win32
+		{1115C239-7360-46F9-B5A8-968885442CBF}.Release|Win32.ActiveCfg = Release|Win32
+		{1115C239-7360-46F9-B5A8-968885442CBF}.Release|Win32.Build.0 = Release|Win32
+		{886E832C-3081-4751-99A3-18E5E1876806}.Debug|Win32.ActiveCfg = Debug|Win32
+		{886E832C-3081-4751-99A3-18E5E1876806}.Debug|Win32.Build.0 = Debug|Win32
+		{886E832C-3081-4751-99A3-18E5E1876806}.Release|Win32.ActiveCfg = Release|Win32
+		{886E832C-3081-4751-99A3-18E5E1876806}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
