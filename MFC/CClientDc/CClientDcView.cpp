@@ -27,6 +27,8 @@ IMPLEMENT_DYNCREATE(CCClientDcView, CView)
 		ON_COMMAND(ID_FILE_PRINT, CView::OnFilePrint)
 		ON_COMMAND(ID_FILE_PRINT_DIRECT, CView::OnFilePrint)
 		ON_COMMAND(ID_FILE_PRINT_PREVIEW, CView::OnFilePrintPreview)
+		ON_WM_LBUTTONDOWN()
+		ON_WM_LBUTTONUP()
 	END_MESSAGE_MAP()
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -120,4 +122,25 @@ IMPLEMENT_DYNCREATE(CCClientDcView, CView)
 	{
 		// TODO: Add your command update UI handler code here
 		pCmdUI->SetCheck(check==1);
+	}
+
+
+	void CCClientDcView::OnLButtonDown(UINT nFlags, CPoint point)
+	{
+		// TODO: 在此添加消息处理程序代码和/或调用默认值
+		orgin=point;
+		CView::OnLButtonDown(nFlags, point);
+	}
+
+
+	void CCClientDcView::OnLButtonUp(UINT nFlags, CPoint point)
+	{
+		// TODO: 在此添加消息处理程序代码和/或调用默认值
+		CWindowDC dc(this);
+		CPen pen(PS_DASHDOTDOT,1,RGB(200,100,100));
+		CPen *old=dc.SelectObject(&pen);
+		dc.MoveTo(orgin);
+		dc.LineTo(point);
+		dc.SelectObject(old);
+		CView::OnLButtonUp(nFlags, point);
 	}

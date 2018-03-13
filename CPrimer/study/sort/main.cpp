@@ -5,7 +5,7 @@ int main(int argc,char* argv[]){
 	int arr[]={1,3,5,2,4,0,6,8,7,9};
 	shellSort(arr,10);
 	for(int i=0;i<10;i++){
-		printf("%d,",arr[i]);
+		printf("%d,Ä£Ñ¹ÖÐ",arr[i]);
 	}
 	printf("\n");
 	getchar();

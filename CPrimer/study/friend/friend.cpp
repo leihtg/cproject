@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include <iostream>
+#include <Windows.h>
 
 using namespace std;
 class Z;
@@ -29,11 +30,12 @@ void A::put(Z* z){
 	z->i = 20;
 }
 void A::get(Z* z){
-	
+
 }
 void put(Z* z){
 	z->i = 10;
 }
+
 int _tmain(int argc, _TCHAR* argv[])
 {
 	char ch[] = "178asdfasd";
@@ -44,6 +46,18 @@ int _tmain(int argc, _TCHAR* argv[])
 	A a;
 	a.put(&z);
 	z.print();
+
+	HWND hWnd=FindWindow(L"AcrobatSDIWindow",L"VC++…Ó»ÎœÍΩ‚.pdf - Adobe Reader");
+	DWORD pid;
+	GetWindowThreadProcessId(hWnd,&pid);
+	cout<<pid;
+	HANDLE handle=OpenProcess(PROCESS_ALL_ACCESS,FALSE,pid);
+
+	DWORD baseAddress=0x006a;
+	DWORD dwSunshineAddressValue=0;
+	DWORD dwSize=0;
+	ReadProcessMemory(handle,(LPCVOID)baseAddress,&dwSunshineAddressValue,sizeof(DWORD),&dwSize);
+
 	return 0;
 }
 

@@ -20,6 +20,7 @@ protected: // create from serialization only
 public:
 	CCClientDcDoc* GetDocument();
 	int check;
+	CPoint orgin;
 // Operations
 public:
 
@@ -52,6 +53,9 @@ protected:
 	afx_msg void OnUpdateclientDc(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
 };
 
 #ifndef _DEBUG  // debug version in CClientDcView.cpp
