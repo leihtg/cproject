@@ -49,7 +49,7 @@ END_MESSAGE_MAP()
 
 
 CsimpleDlg::CsimpleDlg(CWnd* pParent /*=NULL*/)
-: CDialogEx(CsimpleDlg::IDD, pParent), name(_T(""))
+	: CDialogEx(CsimpleDlg::IDD, pParent), name(_T(""))
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
@@ -66,8 +66,6 @@ BEGIN_MESSAGE_MAP(CsimpleDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
-	//	ON_WM_DROPFILES()
-	//	ON_WM_HELPINFO()
 	ON_WM_DROPFILES()
 END_MESSAGE_MAP()
 
@@ -104,7 +102,9 @@ BOOL CsimpleDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
 
 	// TODO:  在此添加额外的初始化代码
-
+	ChangeWindowMessageFilter(WM_DROPFILES, MSGFLT_ADD);
+	ChangeWindowMessageFilter(0x0049, MSGFLT_ADD); //0x0049==WM_COPYGLOBALDATA
+	// ::DragAcceptFiles(m_hWnd, TRUE); // 对话框程序可在其【属性】-【行为】-【Accept Files】置为【True】，而不用调用此行。反之则可，两者可选其一嘛~~~
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
 
@@ -172,12 +172,12 @@ BOOL CsimpleDlg::PreTranslateMessage(MSG* pMsg)
 			int pos = 0;
 			while ((pos = str.Find(_T(";"), start)) != -1)
 			{
-				paths.InsertString(0, str.Mid(start, pos - start));
+				paths.AddString(str.Mid(start, pos - start));
 				start = pos + 1;
 			}
 			str = str.Mid(start);
 			if (str != _T("")){
-				paths.InsertString(0, str);
+				paths.AddString(str);
 			}
 
 		}
@@ -204,7 +204,21 @@ void CsimpleDlg::OnDropFiles(HDROP hDropInfo)
 		continue;*/
 
 		// 把文件名添加到list中
-		paths.InsertString(0, szFileName);
+		paths.AddString(szFileName);
 	}
 	DragFinish(hDropInfo);
+	CString path;
+	for(int i=0,len=paths.GetCount();i<len;i++){
+		CString str;
+		paths.GetText(i,str);
+		path+=str;
+		path.Append(_T(";"));
+	}
+	MessageBox(path);
+	CRegHandle cReg;
+	UpdateData(TRUE);
+	BOOL flag=cReg.setKey(name,path);
+	CString str;
+	str.Format(_T("环境变量[%s]设置[%s]"),name,flag?_T("成功"):_T("失败"));
+	MessageBox(str);
 }
