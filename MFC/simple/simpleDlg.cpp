@@ -49,7 +49,7 @@ END_MESSAGE_MAP()
 
 
 CsimpleDlg::CsimpleDlg(CWnd* pParent /*=NULL*/)
-	: CDialogEx(CsimpleDlg::IDD, pParent), name(_T(""))
+: CDialogEx(CsimpleDlg::IDD, pParent), name(_T(""))
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
@@ -67,6 +67,7 @@ BEGIN_MESSAGE_MAP(CsimpleDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_WM_DROPFILES()
+	ON_COMMAND(IDM_DELETE, &CsimpleDlg::OnDelete)
 END_MESSAGE_MAP()
 
 
@@ -102,6 +103,7 @@ BOOL CsimpleDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
 
 	// TODO:  在此添加额外的初始化代码
+	ChangeWindowMessageFilter(WM_SETTINGCHANGE, MSGFLT_ADD);
 	ChangeWindowMessageFilter(WM_DROPFILES, MSGFLT_ADD);
 	ChangeWindowMessageFilter(0x0049, MSGFLT_ADD); //0x0049==WM_COPYGLOBALDATA
 	// ::DragAcceptFiles(m_hWnd, TRUE); // 对话框程序可在其【属性】-【行为】-【Accept Files】置为【True】，而不用调用此行。反之则可，两者可选其一嘛~~~
@@ -207,18 +209,34 @@ void CsimpleDlg::OnDropFiles(HDROP hDropInfo)
 		paths.AddString(szFileName);
 	}
 	DragFinish(hDropInfo);
-	CString path;
-	for(int i=0,len=paths.GetCount();i<len;i++){
-		CString str;
-		paths.GetText(i,str);
-		path+=str;
-		path.Append(_T(";"));
-	}
-	MessageBox(path);
-	CRegHandle cReg;
-	UpdateData(TRUE);
-	BOOL flag=cReg.setKey(name,path);
+	doSetKey();
+}
+
+
+void CsimpleDlg::OnDelete()
+{
+	// TODO:  在此添加命令处理程序代码
+	int index = paths.GetCurSel();
 	CString str;
-	str.Format(_T("环境变量[%s]设置[%s]"),name,flag?_T("成功"):_T("失败"));
+	paths.GetText(index, str);
+	str.Insert(0, _T("确定删除:\n"));
+
+	int ret = MessageBox(str, _T("提示"), MB_OKCANCEL | MB_ICONWARNING);
+	if (IDOK == ret){
+		paths.DeleteString(index);
+		doSetKey();
+	}
+}
+
+void CsimpleDlg::doSetKey(){
+	UpdateData(TRUE);
+	if (name == _T("")){
+		return;
+	}
+	CRegHandle reg;
+	CString str;
+
+	BOOL flag = reg.setKey(name, paths);
+	str.Format(_T("环境变量[%s]设置[%s]"), name, flag ? _T("成功") : _T("失败"));
 	MessageBox(str);
 }

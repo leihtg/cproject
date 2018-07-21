@@ -4,6 +4,7 @@
 
 #pragma once
 #include "afxwin.h"
+#include "MyListBox.h"
 
 
 // CsimpleDlg ¶Ô»°¿ò
@@ -36,5 +37,7 @@ protected:
 public:
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	CString name;
-	CListBox paths;
+	CMyListBox paths;
+	afx_msg void OnDelete();
+	void doSetKey();
 };
