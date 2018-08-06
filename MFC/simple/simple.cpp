@@ -29,7 +29,9 @@ CsimpleApp::CsimpleApp()
 	// 将所有重要的初始化放置在 InitInstance 中
 }
 
-
+CsimpleApp::~CsimpleApp(){
+	
+}
 // 唯一的一个 CsimpleApp 对象
 
 CsimpleApp theApp;
@@ -39,6 +41,17 @@ CsimpleApp theApp;
 
 BOOL CsimpleApp::InitInstance()
 {
+	WSADATA wsd;
+	if (WSAStartup(MAKEWORD(2, 2), &wsd) == 0)
+	{
+		//CString str;
+		//str.Format(_T("最多可打开[%d]个套接字\n数据报最大长度:[%d]"), wsd.iMaxSockets, wsd.iMaxUdpDg);
+		//MessageBox(NULL, str, _T("提示"), MB_OK);
+	}
+	else
+	{
+		MessageBox(NULL,_T("初始化套接字失败"),_T("提示"),MB_OK);
+	}
 	// 如果一个运行在 Windows XP 上的应用程序清单指定要
 	// 使用 ComCtl32.dll 版本 6 或更高版本来启用可视化方式，
 	//则需要 InitCommonControlsEx()。  否则，将无法创建窗口。
@@ -100,3 +113,11 @@ BOOL CsimpleApp::InitInstance()
 	return FALSE;
 }
 
+
+
+int CsimpleApp::ExitInstance()
+{
+	// TODO:  在此添加专用代码和/或调用基类
+	WSACleanup();
+	return CWinApp::ExitInstance();
+}

@@ -19,6 +19,7 @@ class CsimpleApp : public CWinApp
 {
 public:
 	CsimpleApp();
+	~CsimpleApp();
 
 // ÷ÿ–¥
 public:
@@ -27,6 +28,7 @@ public:
 //  µœ÷
 
 	DECLARE_MESSAGE_MAP()
+	virtual int ExitInstance();
 };
 
 extern CsimpleApp theApp;

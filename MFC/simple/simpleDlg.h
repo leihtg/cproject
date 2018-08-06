@@ -6,25 +6,26 @@
 #include "afxwin.h"
 #include "MyListBox.h"
 
+#define WM_RECEIVEBROCAST WM_USER+1
+
 
 // CsimpleDlg 对话框
 class CsimpleDlg : public CDialogEx
 {
 private:
-// 构造
+	//广播
+	SOCKET broadcast;
+	// 构造
 public:
 	CsimpleDlg(CWnd* pParent = NULL);	// 标准构造函数
 
-// 对话框数据
+	// 对话框数据
 	enum { IDD = IDD_SIMPLE_DIALOG };
 
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV 支持
-
-
-// 实现
 protected:
+	// 实现
 	HICON m_hIcon;
+	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV 支持
 
 	// 生成的消息映射函数
 	virtual BOOL OnInitDialog();
@@ -32,7 +33,7 @@ protected:
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
 	afx_msg void OnDropFiles(HDROP hDropInfo);
-	
+
 	DECLARE_MESSAGE_MAP()
 public:
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
@@ -40,4 +41,14 @@ public:
 	CMyListBox paths;
 	afx_msg void OnDelete();
 	void doSetKey();
+	void InitBroadSocket();
+	static DWORD WINAPI recvFromProc(LPVOID lpParameter);
+
+protected:
+	afx_msg LRESULT OnReceivebrocast(WPARAM wParam, LPARAM lParam);
+};
+
+struct RECVPARAM{
+	SOCKET socket;
+	HWND hWnd;
 };
