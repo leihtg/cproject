@@ -39,6 +39,9 @@
     <ClInclude Include="MyListBox.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="SoundRecord.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="simple.cpp">
@@ -54,6 +57,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="MyListBox.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundRecord.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

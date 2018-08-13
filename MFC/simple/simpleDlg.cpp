@@ -8,6 +8,7 @@
 #include "afxdialogex.h"
 #include "RegHandle.h"
 
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -60,6 +61,7 @@ void CsimpleDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_PATH, name);
 	DDV_MaxChars(pDX, name, 255);
 	DDX_Control(pDX, IDC_PATHS, paths);
+	DDX_Control(pDX, IDC_USER_LIST, m_userList);
 }
 
 BEGIN_MESSAGE_MAP(CsimpleDlg, CDialogEx)
@@ -69,6 +71,10 @@ BEGIN_MESSAGE_MAP(CsimpleDlg, CDialogEx)
 	ON_WM_DROPFILES()
 	ON_COMMAND(IDM_DELETE, &CsimpleDlg::OnDelete)
 	ON_MESSAGE(WM_RECEIVEBROCAST, &CsimpleDlg::OnReceivebrocast)
+	ON_BN_CLICKED(IDC_BUTTON1, &CsimpleDlg::OnBnClickedButton1)
+	ON_BN_CLICKED(IDC_BUTTON2, &CsimpleDlg::OnBnClickedButton2)
+	ON_MESSAGE(MM_WIM_DATA, &CsimpleDlg::OnMmWimData)
+	ON_MESSAGE(WIM_DATA, &CsimpleDlg::OnWimData)
 END_MESSAGE_MAP()
 
 
@@ -109,6 +115,8 @@ BOOL CsimpleDlg::OnInitDialog()
 	ChangeWindowMessageFilter(0x0049, MSGFLT_ADD); //0x0049==WM_COPYGLOBALDATA
 	// ::DragAcceptFiles(m_hWnd, TRUE); // 对话框程序可在其【属性】-【行为】-【Accept Files】置为【True】，而不用调用此行。反之则可，两者可选其一嘛~~~
 
+	m_userList.InsertColumn(0, _T("用户"),LVCFMT_LEFT,100);
+	//::SendMessage(m_userList.m_hWnd, LVM_SETEXTENDEDLISTVIEWSTYLE, LVS_EX_FULLROWSELECT, LVS_EX_FULLROWSELECT);
 	InitBroadSocket();
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
@@ -325,5 +333,36 @@ afx_msg LRESULT CsimpleDlg::OnReceivebrocast(WPARAM wParam, LPARAM lParam)
 	CString str;
 	str.Format(_T("%s[%d]:\t%s\n"), CString(host), port, CString(buf, len));
 	paths.InsertString(0, str);
+	return 0;
+}
+
+
+void CsimpleDlg::OnBnClickedButton1()
+{
+	// TODO:  在此添加控件通知处理程序代码
+	CSoundRecord record(m_hWnd);
+	record.beginRecord();
+}
+
+
+void CsimpleDlg::OnBnClickedButton2()
+{
+	// TODO:  在此添加控件通知处理程序代码
+	CSoundRecord record(m_hWnd);
+	record.soundPlay();
+}
+
+
+afx_msg LRESULT CsimpleDlg::OnMmWimData(WPARAM wParam, LPARAM lParam)
+{
+	
+	MessageBox(_T("hehe"));
+	return 0;
+}
+
+
+afx_msg LRESULT CsimpleDlg::OnWimData(WPARAM wParam, LPARAM lParam)
+{
+	MessageBox(_T("full"));
 	return 0;
 }

@@ -109,6 +109,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="simple.h" />
     <ClInclude Include="simpleDlg.h" />
+    <ClInclude Include="SoundRecord.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -117,6 +118,7 @@
     <ClCompile Include="RegHandle.cpp" />
     <ClCompile Include="simple.cpp" />
     <ClCompile Include="simpleDlg.cpp" />
+    <ClCompile Include="SoundRecord.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

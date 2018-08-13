@@ -5,6 +5,8 @@
 #pragma once
 #include "afxwin.h"
 #include "MyListBox.h"
+#include "afxcmn.h"
+#include "SoundRecord.h"
 
 #define WM_RECEIVEBROCAST WM_USER+1
 
@@ -15,7 +17,7 @@ class CsimpleDlg : public CDialogEx
 private:
 	//广播
 	SOCKET broadcast;
-	// 构造
+	
 public:
 	CsimpleDlg(CWnd* pParent = NULL);	// 标准构造函数
 
@@ -46,6 +48,14 @@ public:
 
 protected:
 	afx_msg LRESULT OnReceivebrocast(WPARAM wParam, LPARAM lParam);
+public:
+	// 用户列表
+	CListCtrl m_userList;
+	afx_msg void OnBnClickedButton1();
+	afx_msg void OnBnClickedButton2();
+protected:
+	afx_msg LRESULT OnMmWimData(WPARAM wParam, LPARAM lParam);
+	afx_msg LRESULT OnWimData(WPARAM wParam, LPARAM lParam);
 };
 
 struct RECVPARAM{
