@@ -17,7 +17,7 @@ class CsimpleDlg : public CDialogEx
 private:
 	//广播
 	SOCKET broadcast;
-	
+	CSoundRecord record;
 public:
 	CsimpleDlg(CWnd* pParent = NULL);	// 标准构造函数
 
@@ -53,9 +53,6 @@ public:
 	CListCtrl m_userList;
 	afx_msg void OnBnClickedButton1();
 	afx_msg void OnBnClickedButton2();
-protected:
-	afx_msg LRESULT OnMmWimData(WPARAM wParam, LPARAM lParam);
-	afx_msg LRESULT OnWimData(WPARAM wParam, LPARAM lParam);
 };
 
 struct RECVPARAM{
