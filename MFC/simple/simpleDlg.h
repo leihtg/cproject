@@ -9,6 +9,13 @@
 #include "SoundRecord.h"
 
 #define WM_RECEIVEBROCAST WM_USER+1
+//心跳检测
+#define WM_BEAT_HART      WM_USER+2
+//文件发送请求
+#define WM_FILE_REQ       WM_USER+3
+//文件接收请求
+#define WM_FILE_RESP      WM_USER+4
+#define BROADCAST_PORT    7777
 
 
 // CsimpleDlg 对话框
@@ -45,6 +52,7 @@ public:
 	void doSetKey();
 	void InitBroadSocket();
 	static DWORD WINAPI recvFromProc(LPVOID lpParameter);
+	static DWORD WINAPI broadCastAddress(LPVOID lpParameter);
 
 protected:
 	afx_msg LRESULT OnReceivebrocast(WPARAM wParam, LPARAM lParam);
@@ -53,6 +61,17 @@ public:
 	CListCtrl m_userList;
 	afx_msg void OnBnClickedButton1();
 	afx_msg void OnBnClickedButton2();
+protected:
+	afx_msg LRESULT OnBeatHart(WPARAM wParam, LPARAM lParam);
+	afx_msg LRESULT OnFileReq(WPARAM wParam, LPARAM lParam);
+	afx_msg LRESULT OnFileResp(WPARAM wParam, LPARAM lParam);
+};
+//用户信息
+class UserInfo{
+public:
+	int msgType;//消息类型 0是登录 1是传文件
+	char userName[120];
+	SOCKADDR_IN addr;
 };
 
 struct RECVPARAM{

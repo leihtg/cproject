@@ -212,7 +212,7 @@ void CSoundRecord::initAudio(){
 	}
 }
 FILE* fp;
-int a = fopen_s(&fp, "C:\\Users\\admin\\Desktop\\a.wav", "wb+");
+int a = fopen_s(&fp, "C:\\Users\\Public\\Desktop\\a.wav", "wb+");
 BOOL init = FALSE;
 
 void CSoundRecord::saveSound(LPSTR buf, int size){

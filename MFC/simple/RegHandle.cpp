@@ -29,7 +29,7 @@ BOOL CRegHandle::setKey(CString key, CString value){
 	}
 	BOOL ret = ERROR_SUCCESS == RegSetValueEx(hKey, key, NULL, type, (BYTE*)value.GetBuffer(0), value.GetLength()*sizeof(TCHAR));
 	LRESULT lret = 0;
-	DWORD dwRet = 0;
+	DWORD_PTR dwRet = 0;
 	int a;
 	if (ret){
 		//发送消息立即生效

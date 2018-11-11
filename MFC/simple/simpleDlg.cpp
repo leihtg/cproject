@@ -70,9 +70,12 @@ BEGIN_MESSAGE_MAP(CsimpleDlg, CDialogEx)
 	ON_WM_QUERYDRAGICON()
 	ON_WM_DROPFILES()
 	ON_COMMAND(IDM_DELETE, &CsimpleDlg::OnDelete)
-//	ON_MESSAGE(WM_RECEIVEBROCAST, &CsimpleDlg::OnReceivebrocast)
+	ON_MESSAGE(WM_RECEIVEBROCAST, &CsimpleDlg::OnReceivebrocast)
 	ON_BN_CLICKED(IDC_BUTTON1, &CsimpleDlg::OnBnClickedButton1)
 	ON_BN_CLICKED(IDC_BUTTON2, &CsimpleDlg::OnBnClickedButton2)
+	ON_MESSAGE(WM_BEAT_HART, &CsimpleDlg::OnBeatHart)
+	ON_MESSAGE(WM_FILE_REQ, &CsimpleDlg::OnFileReq)
+	ON_MESSAGE(WM_FILE_RESP, &CsimpleDlg::OnFileResp)
 END_MESSAGE_MAP()
 
 
@@ -113,12 +116,15 @@ BOOL CsimpleDlg::OnInitDialog()
 	ChangeWindowMessageFilter(0x0049, MSGFLT_ADD); //0x0049==WM_COPYGLOBALDATA
 	// ::DragAcceptFiles(m_hWnd, TRUE); // 对话框程序可在其【属性】-【行为】-【Accept Files】置为【True】，而不用调用此行。反之则可，两者可选其一嘛~~~
 
+	m_userList.InsertColumn(0, _T("状态"),LVCFMT_LEFT,100);
 	m_userList.InsertColumn(0, _T("用户"),LVCFMT_LEFT,100);
 	//::SendMessage(m_userList.m_hWnd, LVM_SETEXTENDEDLISTVIEWSTYLE, LVS_EX_FULLROWSELECT, LVS_EX_FULLROWSELECT);
 	InitBroadSocket();
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
+
+UserInfo userList[100];
 
 void CsimpleDlg::OnSysCommand(UINT nID, LPARAM lParam)
 {
@@ -266,26 +272,50 @@ void CsimpleDlg::InitBroadSocket(){
 	SOCKADDR_IN local;
 	local.sin_addr.S_un.S_addr = htonl(INADDR_ANY);
 	local.sin_family = AF_INET;
-	local.sin_port = htons(7777);
+	local.sin_port = htons(BROADCAST_PORT);
 
-	//bool optVal = true;
-	//if (SOCKET_ERROR == setsockopt(broadcast, SOL_SOCKET, SO_BROADCAST, (const char*)&optVal, sizeof(optVal))){
-	//	MessageBox(_T("设置socket广播失败"), _T("联网失败"), MB_OK);
-	//	return;
-	//}
+	bool optVal = true;
+	if (SOCKET_ERROR == setsockopt(broadcast, SOL_SOCKET, SO_BROADCAST, (const char*)&optVal, sizeof(optVal))){
+		MessageBox(_T("设置socket广播失败"), _T("联网失败"), MB_OK);
+		return;
+	}
 
 	if (SOCKET_ERROR == bind(broadcast, (sockaddr*)&local, sizeof(local))){
 		MessageBox(_T("绑定socket失败"), _T("联网失败"), MB_OK);
 		return;
 	}
 
-
-
 	//创建线程
 	RECVPARAM* param = new RECVPARAM;
 	param->socket = broadcast;
 	param->hWnd = this->m_hWnd;
+	//监听是否有新户进来
 	CreateThread(NULL, NULL, recvFromProc, (LPVOID*)param, NULL, NULL);
+	//向其他用户发送上线通知
+	CreateThread(NULL, NULL, broadCastAddress, (LPVOID*)param, NULL, NULL);
+}
+
+
+DWORD WINAPI CsimpleDlg::broadCastAddress(LPVOID lpParameter){
+	RECVPARAM* param = (RECVPARAM*)lpParameter;
+	SOCKET s = param->socket;
+	HWND hwnd = param->hWnd;
+	SOCKADDR_IN mAddr;
+	mAddr.sin_addr.S_un.S_addr = htonl(INADDR_BROADCAST);
+	mAddr.sin_family = AF_INET;
+	mAddr.sin_port = htons(BROADCAST_PORT);
+
+	UserInfo user;
+	gethostname(user.userName, sizeof(user.userName));
+	user.msgType = WM_BEAT_HART;//心跳
+
+	int bs = socket(AF_INET, SOCK_DGRAM, NULL);
+	while (true)
+	{
+		//每隔1秒发送一次
+		Sleep(1000);
+		sendto(bs, (char*)&user, sizeof(user), 0, (SOCKADDR*)&mAddr, sizeof(mAddr));
+	}
 }
 
 DWORD WINAPI CsimpleDlg::recvFromProc(LPVOID lpParameter){
@@ -293,11 +323,12 @@ DWORD WINAPI CsimpleDlg::recvFromProc(LPVOID lpParameter){
 	SOCKET s = param->socket;
 	HWND hwnd = param->hWnd;
 	delete param;
-	char buf[1024] = { 0 };
+
+	UserInfo user;
 	SOCKADDR_IN from;
 	int len = sizeof(from), ret = 0;
 	while (true){
-		ret = recvfrom(s, buf, sizeof(buf), NULL, (sockaddr*)&from, &len);
+		ret = recvfrom(s, (char*)&user, sizeof(user), NULL, (sockaddr*)&from, &len);
 		if (ret == SOCKET_ERROR){
 			//出错
 			ret = WSAGetLastError();
@@ -311,9 +342,18 @@ DWORD WINAPI CsimpleDlg::recvFromProc(LPVOID lpParameter){
 			//正常关闭
 			continue;
 		}
-		memset(buf + ret, NULL, 2);
-		::PostMessage(hwnd, WM_RECEIVEBROCAST, (WPARAM)&from, (LPARAM)buf);
-
+		switch (user.msgType)
+		{
+		case WM_BEAT_HART:
+			break;
+		case WM_FILE_REQ:
+			break;
+		case WM_FILE_RESP:
+			break;
+		default:
+			continue;
+		}
+		::PostMessage(hwnd, user.msgType, (WPARAM)&from, (LPARAM)&user);
 	}
 	return -1;
 }
@@ -332,6 +372,8 @@ afx_msg LRESULT CsimpleDlg::OnReceivebrocast(WPARAM wParam, LPARAM lParam)
 	CString str;
 	str.Format(_T("%s[%d]:\t%s\n"), CString(host), port, CString(buf, len));
 	paths.InsertString(0, str);
+	m_userList.InsertColumn(0, _T("用户"),LVCFMT_LEFT,100);
+	//m_userList.InsertItem()
 	return 0;
 }
 
@@ -347,4 +389,33 @@ void CsimpleDlg::OnBnClickedButton2()
 {
 	// TODO:  在此添加控件通知处理程序代码
 	record.soundPlay();
+}
+
+
+afx_msg LRESULT CsimpleDlg::OnBeatHart(WPARAM wParam, LPARAM lParam)
+{
+	UserInfo *user = (UserInfo*)lParam;
+	char* name=user->userName;
+	LVFINDINFO info;
+	info.psz = CString(name);
+
+	int index=m_userList.FindItem(&info);
+	if (index != -1){
+		m_userList.DeleteItem(index);
+	}
+	m_userList.InsertItem(0,_T("在线"));
+	m_userList.InsertItem(0, CString(name));
+	return 0;
+}
+
+
+afx_msg LRESULT CsimpleDlg::OnFileReq(WPARAM wParam, LPARAM lParam)
+{
+	return 0;
+}
+
+
+afx_msg LRESULT CsimpleDlg::OnFileResp(WPARAM wParam, LPARAM lParam)
+{
+	return 0;
 }
