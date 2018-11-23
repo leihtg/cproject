@@ -116,8 +116,8 @@ BOOL CsimpleDlg::OnInitDialog()
 	ChangeWindowMessageFilter(0x0049, MSGFLT_ADD); //0x0049==WM_COPYGLOBALDATA
 	// ::DragAcceptFiles(m_hWnd, TRUE); // 对话框程序可在其【属性】-【行为】-【Accept Files】置为【True】，而不用调用此行。反之则可，两者可选其一嘛~~~
 
-	m_userList.InsertColumn(0, _T("状态"),LVCFMT_LEFT,100);
-	m_userList.InsertColumn(0, _T("用户"),LVCFMT_LEFT,100);
+	m_userList.InsertColumn(0, _T("状态"),LVCFMT_LEFT,50);
+	m_userList.InsertColumn(0, _T("用户"),LVCFMT_LEFT,200);
 	//::SendMessage(m_userList.m_hWnd, LVM_SETEXTENDEDLISTVIEWSTYLE, LVS_EX_FULLROWSELECT, LVS_EX_FULLROWSELECT);
 	InitBroadSocket();
 
@@ -301,7 +301,7 @@ DWORD WINAPI CsimpleDlg::broadCastAddress(LPVOID lpParameter){
 	SOCKET s = param->socket;
 	HWND hwnd = param->hWnd;
 	SOCKADDR_IN mAddr;
-	mAddr.sin_addr.S_un.S_addr = htonl(INADDR_BROADCAST);
+	mAddr.sin_addr.S_un.S_addr = inet_addr("192.168.1.255"); //htonl(INADDR_BROADCAST);
 	mAddr.sin_family = AF_INET;
 	mAddr.sin_port = htons(BROADCAST_PORT);
 
@@ -314,6 +314,7 @@ DWORD WINAPI CsimpleDlg::broadCastAddress(LPVOID lpParameter){
 	{
 		//每隔1秒发送一次
 		Sleep(1000);
+		char* drr=inet_ntoa(mAddr.sin_addr);
 		sendto(bs, (char*)&user, sizeof(user), 0, (SOCKADDR*)&mAddr, sizeof(mAddr));
 	}
 }
@@ -395,16 +396,21 @@ void CsimpleDlg::OnBnClickedButton2()
 afx_msg LRESULT CsimpleDlg::OnBeatHart(WPARAM wParam, LPARAM lParam)
 {
 	UserInfo *user = (UserInfo*)lParam;
-	char* name=user->userName;
-	LVFINDINFO info;
-	info.psz = CString(name);
+	CString name(user->userName);
 
-	int index=m_userList.FindItem(&info);
-	if (index != -1){
-		m_userList.DeleteItem(index);
+	int num = m_userList.GetItemCount();
+	bool isNew = true;
+	for (int i = 0; i < num; i++){
+		CString str = m_userList.GetItemText(i, 0);
+		if (str == name){
+			isNew = false;
+		}
 	}
-	m_userList.InsertItem(0,_T("在线"));
-	m_userList.InsertItem(0, CString(name));
+	if (isNew){
+		m_userList.InsertItem(0, _T(""));
+		m_userList.SetItemText(0, 0, name);
+		m_userList.SetItemText(0, 1, _T("在线"));
+	}
 	return 0;
 }
 
