@@ -190,6 +190,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FileTransferDialog.h" />
     <ClInclude Include="MyListBox.h" />
     <ClInclude Include="RegHandle.h" />
     <ClInclude Include="Resource.h" />
@@ -200,6 +201,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="FileTransferDialog.cpp" />
     <ClCompile Include="MyListBox.cpp" />
     <ClCompile Include="RegHandle.cpp" />
     <ClCompile Include="simple.cpp" />

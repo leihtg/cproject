@@ -7,6 +7,7 @@
 #include "MyListBox.h"
 #include "afxcmn.h"
 #include "SoundRecord.h"
+#include "FileTransferDialog.h"
 
 #define WM_RECEIVEBROCAST WM_USER+1
 //心跳检测
@@ -65,6 +66,12 @@ protected:
 	afx_msg LRESULT OnBeatHart(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnFileReq(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnFileResp(WPARAM wParam, LPARAM lParam);
+//	virtual BOOL OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult);
+public:
+//	afx_msg UINT OnNotifyFormat(CWnd *pWnd, UINT nCommand);
+	afx_msg void OnDblclkUserList(NMHDR *pNMHDR, LRESULT *pResult);
+private:
+	CFileTransferDialog* fileDialog;
 };
 //用户信息
 class UserInfo{

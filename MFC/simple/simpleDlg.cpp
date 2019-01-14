@@ -76,6 +76,8 @@ BEGIN_MESSAGE_MAP(CsimpleDlg, CDialogEx)
 	ON_MESSAGE(WM_BEAT_HART, &CsimpleDlg::OnBeatHart)
 	ON_MESSAGE(WM_FILE_REQ, &CsimpleDlg::OnFileReq)
 	ON_MESSAGE(WM_FILE_RESP, &CsimpleDlg::OnFileResp)
+//	ON_WM_NOTIFYFORMAT()
+ON_NOTIFY(NM_DBLCLK, IDC_USER_LIST, &CsimpleDlg::OnDblclkUserList)
 END_MESSAGE_MAP()
 
 
@@ -424,4 +426,34 @@ afx_msg LRESULT CsimpleDlg::OnFileReq(WPARAM wParam, LPARAM lParam)
 afx_msg LRESULT CsimpleDlg::OnFileResp(WPARAM wParam, LPARAM lParam)
 {
 	return 0;
+}
+
+
+//BOOL CsimpleDlg::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult)
+//{
+//	// TODO:  在此添加专用代码和/或调用基类
+//
+//	return CDialogEx::OnNotify(wParam, lParam, pResult);
+//}
+
+
+//UINT CsimpleDlg::OnNotifyFormat(CWnd *pWnd, UINT nCommand)
+//{
+//	// TODO:  在此添加消息处理程序代码和/或调用默认值
+//
+//	return CDialogEx::OnNotifyFormat(pWnd, nCommand);
+//}
+
+
+void CsimpleDlg::OnDblclkUserList(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
+	// TODO:  在此添加控件通知处理程序代码
+	
+	if (!fileDialog){
+		fileDialog = new CFileTransferDialog();
+		fileDialog->Create(IDD_DIALOG1);
+	}
+	fileDialog->ShowWindow(SW_SHOWNOACTIVATE);
+	*pResult = 0;
 }
