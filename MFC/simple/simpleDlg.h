@@ -72,6 +72,8 @@ public:
 	afx_msg void OnDblclkUserList(NMHDR *pNMHDR, LRESULT *pResult);
 private:
 	CFileTransferDialog* fileDialog;
+public:
+	afx_msg void OnLvnItemchangedUserList(NMHDR *pNMHDR, LRESULT *pResult);
 };
 //用户信息
 class UserInfo{

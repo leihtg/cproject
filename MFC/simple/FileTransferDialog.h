@@ -1,6 +1,7 @@
 #pragma once
 #include "afxwin.h"
 #include "resource.h"
+#include "afxcmn.h"
 class CFileTransferDialog : public CDialogEx
 {
 public:
@@ -12,8 +13,16 @@ public:
 //	CListBox files;
 	virtual void DoDataExchange(CDataExchange* pDX);
 private:
-	CListBox files;
+//	CListBox files;
 public:
 	virtual BOOL OnInitDialog();
+	CEdit msg;
+	afx_msg void OnBnClickedSend();
+	void scan(CString dir);
+	void sendFile();
+	CString m_ip;
+	int m_port;
+	CListCtrl files;
+	CString m_fpath;
 };
 
