@@ -24,5 +24,6 @@ public:
 	int m_port;
 	CListCtrl files;
 	CString m_fpath;
+	afx_msg void OnBnClickedSend2();
 };
 
