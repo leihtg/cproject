@@ -7,7 +7,7 @@
 #include <iostream>
 #include <direct.h>
 #include <io.h>
-#include <WinSock2.h>
+#include "FileUtil.h"
 
 #pragma comment(lib,"ws2_32.lib")
 using namespace std;
@@ -17,17 +17,17 @@ void socketServer();
 void socketClient(char* host, USHORT port);
 void sendFile(SOCKET);
 void listFiles(char* filename, SOCKET s);
-struct FileTime
-{
-	FILETIME createTime, accessTime, writeTime;
-	unsigned    attrib;
-	_fsize_t    size;
-};
 
 string fname;
 string baseDir;
-int _tmain(int argc, _TCHAR* argv[])
-{
+
+int _tmain(int argc, _TCHAR* argv[]){
+	
+	string file = "C:\\Users\\leihtg\\Desktop\\recv";
+	FileTime ft=FileUtil::getFileTime(file);
+	FileUtil::setFileTime("C:\\Users\\leihtg\\Desktop\\abc", ft);
+	return 0;
+
 	WORD ver = MAKEWORD(2, 2);
 	WSADATA data;
 	int err = WSAStartup(ver, &data);
@@ -80,7 +80,7 @@ void sendF(string filename, SOCKET s){
 	intptr_t handle = _findfirst(filename.c_str(), &fileData);
 	_findclose(handle);
 
-	HANDLE hFile = CreateFileA(filename.c_str(), GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, 0, NULL);
+	HANDLE hFile = CreateFileA(filename.c_str(), GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS, NULL);
 	FileTime ft;
 	ft.attrib = fileData.attrib;
 	ft.size = fileData.size;
@@ -228,6 +228,8 @@ DWORD WINAPI recvDataThread(LPVOID lpParam){
 		if (fileData.attrib&_A_SUBDIR){
 			createDirs(filename + "\\");
 			HANDLE hFile = CreateFileA(filename.c_str(), GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, 0, NULL);
+			CreateFile(L"C:\\Users\\leihtg\\Desktop\\abc", GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS, NULL);
+
 			SetFileTime(hFile, &fileData.createTime, &fileData.accessTime, &fileData.writeTime);
 			CloseHandle(hFile);
 			continue;

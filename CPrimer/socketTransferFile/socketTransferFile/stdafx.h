@@ -9,6 +9,14 @@
 
 #include <stdio.h>
 #include <tchar.h>
+#include <Windows.h>
+
+struct FileTime
+{
+	FILETIME createTime, accessTime, writeTime;
+	unsigned    attrib;
+	_fsize_t    size;
+};
 
 
 
