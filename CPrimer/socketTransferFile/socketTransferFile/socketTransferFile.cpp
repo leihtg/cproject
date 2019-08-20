@@ -2,10 +2,8 @@
 //
 
 #include "stdafx.h"
-#include <string>
 #include <cstdio>
 #include <iostream>
-#include <direct.h>
 #include <io.h>
 #include "FileUtil.h"
 
@@ -22,11 +20,6 @@ string fname;
 string baseDir;
 
 int _tmain(int argc, _TCHAR* argv[]){
-	
-	string file = "C:\\Users\\leihtg\\Desktop\\recv";
-	FileTime ft=FileUtil::getFileTime(file);
-	FileUtil::setFileTime("C:\\Users\\leihtg\\Desktop\\abc", ft);
-	return 0;
 
 	WORD ver = MAKEWORD(2, 2);
 	WSADATA data;
@@ -34,20 +27,6 @@ int _tmain(int argc, _TCHAR* argv[]){
 	if (err != 0) {
 		return 1;
 	}
-	/*
-	string filename = "C:\\Users\\dell\\Desktop\\recv";
-	FileTime fileData;
-	HANDLE hd = CreateFileA("C:\\Users\\dell\\Desktop\\pdf.txt", GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_HIDDEN, NULL);
-	GetFileTime(hd, &fileData.createTime, &fileData.accessTime, &fileData.writeTime);
-	CloseHandle(hd);
-
-	HANDLE hFile = CreateFileA(filename.c_str(), GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, 0, NULL);
-	SetFileTime(hFile, &fileData.createTime, &fileData.accessTime, &fileData.writeTime);
-	CloseHandle(hFile);
-	*/
-	//sendFile(0);
-	//listFiles("C:\\Users\\leihtg\\Desktop\\Agora_Native_SDK_for_Windows_v2_3_2_FULL_1426",NULL);
-	//return 1;
 
 	cout << "请选择：\n1.服务器\n2.客户端\n";
 	cin >> err;
@@ -80,13 +59,9 @@ void sendF(string filename, SOCKET s){
 	intptr_t handle = _findfirst(filename.c_str(), &fileData);
 	_findclose(handle);
 
-	HANDLE hFile = CreateFileA(filename.c_str(), GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS, NULL);
-	FileTime ft;
+	FileTime ft = FileUtil::getFileTime(filename);
 	ft.attrib = fileData.attrib;
 	ft.size = fileData.size;
-
-	GetFileTime(hFile, &ft.createTime, &ft.accessTime, &ft.writeTime);
-	CloseHandle(hFile);
 
 	int pre = fname.rfind("\\");
 	int len = strlen(filename.c_str()) - pre;
@@ -190,22 +165,6 @@ void socketServer(){
 int readBuf(SOCKET s, char* buf, int len){
 	return recv(s, buf, len, 0);
 }
-bool createDirs(string dir) {
-	string sub;
-	int pos = 0;
-	int st;
-	while ((st = dir.find("\\", pos)) != -1) {
-		sub = dir.substr(0, st);
-		pos = st + 1;
-		int rt = _access(sub.c_str(), 0);
-		if (rt == -1) {
-			if (_mkdir(sub.c_str())) {
-				return false;
-			}
-		}
-	}
-	return true;
-}
 
 DWORD WINAPI recvDataThread(LPVOID lpParam){
 
@@ -226,15 +185,11 @@ DWORD WINAPI recvDataThread(LPVOID lpParam){
 		ret = readBuf(s, (char*)&fileData, sizeof(fileData));
 		string filename = baseDir + buf;
 		if (fileData.attrib&_A_SUBDIR){
-			createDirs(filename + "\\");
-			HANDLE hFile = CreateFileA(filename.c_str(), GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, 0, NULL);
-			CreateFile(L"C:\\Users\\leihtg\\Desktop\\abc", GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS, NULL);
-
-			SetFileTime(hFile, &fileData.createTime, &fileData.accessTime, &fileData.writeTime);
-			CloseHandle(hFile);
+			FileUtil::createDirs(filename + "\\");
+			FileUtil::setFileTime(filename, fileData);
 			continue;
 		}
-		createDirs(filename);
+		FileUtil::createDirs(filename);
 		int total = fileData.size;
 		FILE* fp;
 		errno_t err = fopen_s(&fp, filename.c_str(), "wb");
@@ -262,10 +217,7 @@ DWORD WINAPI recvDataThread(LPVOID lpParam){
 
 		} while (true);
 		fclose(fp);
-		HANDLE hFile = CreateFileA(filename.c_str(), GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, 0, NULL);
-		SetFileTime(hFile, &fileData.createTime, &fileData.accessTime, &fileData.writeTime);
-		CloseHandle(hFile);
-
+		FileUtil::setFileTime(filename, fileData);
 	}
 	delete[]buf;
 	closesocket(s);
