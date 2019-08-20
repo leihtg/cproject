@@ -71,10 +71,9 @@ void sendF(string filename, SOCKET s){
 		send(s, (char*)&ft, sizeof(ft), 0);
 		return;
 	}
-	FILE* f;
-	errno_t err = fopen_s(&f, filename.c_str(), "rb");
-	if (err != 0){
-		cout << "读取文件失败:" << filename << "errNo:" << err << endl;
+	FILE* f = _fsopen(filename.c_str(), "rb", _SH_DENYWR);
+	if (f == 0){
+		cout << "读取文件失败:" << filename << "\t errNo:" << GetLastError() << endl;
 		return;
 	}
 	send(s, (char*)&len, sizeof(len), 0);
@@ -96,7 +95,7 @@ void listFiles(string filename, SOCKET s){
 	intptr_t handle = _findfirst(dir.c_str(), &fileData);
 
 	if (handle == -1){
-		cout << "Failed to find first file!\n";
+		cout << "Failed to find first file!" << endl;
 		return;
 	}
 	do{
