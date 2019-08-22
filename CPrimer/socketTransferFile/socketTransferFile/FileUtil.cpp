@@ -39,6 +39,10 @@ void FileUtil::setFileTime(std::string file, FileTime ft){
 	CloseHandle(hFile);
 }
 
+bool FileUtil::exists(std::string filename){
+	return _access(filename.c_str(), 0) == 0;
+}
+
 bool FileUtil::createDirs(std::string dir){
 	std::string sub;
 	int pos = 0;

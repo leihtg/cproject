@@ -11,5 +11,6 @@ public:
 	static void setFileTime(std::string file, FileTime ft);
 	static bool createDirs(std::string dir);
 	static std::wstring stringToWString(std::string& str);
+	static bool exists(std::string filename);
 };
 

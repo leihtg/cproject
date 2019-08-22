@@ -79,6 +79,22 @@ void sendF(string filename, SOCKET s){
 	send(s, (char*)&len, sizeof(len), 0);
 	send(s, filename.c_str() + pre, len, 0);
 	send(s, (char*)&ft, sizeof(ft), 0);
+	//等待对方回复
+	char ch;
+	recv(s, &ch, sizeof(ch), 0);
+	if (ch == 0x11){//需要传送
+		send(s, &ch, sizeof(ch), 0);
+	}
+	else if(ch==0x00){
+		::fclose(f);
+		return;
+	}
+	else
+	{
+		cout << "确认传送文件失败:" << filename << "\t" << ch << endl;
+		::fclose(f);
+		return;
+	}
 	len = 4096;
 	char* buf = (char*)malloc(len);
 	size_t rt;
@@ -86,7 +102,7 @@ void sendF(string filename, SOCKET s){
 		send(s, buf, rt, 0);
 	}
 	free(buf);
-	fclose(f);
+	::fclose(f);
 
 }
 void listFiles(string filename, SOCKET s){
@@ -188,15 +204,37 @@ DWORD WINAPI recvDataThread(LPVOID lpParam){
 			FileUtil::setFileTime(filename, fileData);
 			continue;
 		}
+		char ch = 0x00;
+		FILE* fp;
+		if (FileUtil::exists(filename)){
+			errno_t err = fopen_s(&fp, filename.c_str(), "rb");
+			if (err != 0){
+				cout << "打开文件失败:" << filename << endl;
+				send(s, &ch, sizeof(ch), 0);//文件创建失败不接收
+				::fclose(fp);
+				continue;
+			}
+			else
+			{
+				fseek(fp, 0, SEEK_END);
+				if (fileData.size == ftell(fp)){//不需要再传
+					send(s, &ch, sizeof(ch), 0);
+					continue;
+				}
+			}
+		}
+		ch = 0x11;
+		send(s, &ch, sizeof(ch), 0);
 		FileUtil::createDirs(filename);
 		int total = fileData.size;
-		FILE* fp;
+		
 		errno_t err = fopen_s(&fp, filename.c_str(), "wb");
 		if (err != 0){
 			cout << "创建文件失败:" << filename << endl;
 		}
 		ULONG rd = 0, rdLen = len;
 		ULONG sum = fileData.size;
+
 		if (sum < len){
 			rdLen = sum;
 		}
@@ -215,7 +253,7 @@ DWORD WINAPI recvDataThread(LPVOID lpParam){
 			}
 
 		} while (true);
-		fclose(fp);
+		::fclose(fp);
 		FileUtil::setFileTime(filename, fileData);
 	}
 	delete[]buf;
