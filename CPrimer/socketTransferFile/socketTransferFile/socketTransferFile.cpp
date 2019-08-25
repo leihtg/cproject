@@ -17,6 +17,7 @@ void sendFile(SOCKET);
 void listFiles(char* filename, SOCKET s);
 
 string fname;
+int pre;
 string baseDir;
 
 int _tmain(int argc, _TCHAR* argv[]){
@@ -54,55 +55,55 @@ int _tmain(int argc, _TCHAR* argv[]){
 	return 0;
 }
 void sendF(string filename, SOCKET s){
-	//cout << "发送文件:" << filename << endl;
+
 	_finddata_t fileData;
 	intptr_t handle = _findfirst(filename.c_str(), &fileData);
 	_findclose(handle);
-
+	cout << "发送文件：" << filename << endl;
 	FileTime ft = FileUtil::getFileTime(filename);
 	ft.attrib = fileData.attrib;
 	ft.size = fileData.size;
 
-	int pre = fname.rfind("\\");
-	int len = strlen(filename.c_str()) - pre;
-	if (_A_SUBDIR&fileData.attrib){
-		send(s, (char*)&len, sizeof(len), 0);
-		send(s, filename.c_str() + pre, len, 0);
-		send(s, (char*)&ft, sizeof(ft), 0);
-		return;
-	}
-	FILE* f = _fsopen(filename.c_str(), "rb", _SH_DENYWR);
-	if (f == 0){
-		cout << "读取文件失败:" << filename << "\t errNo:" << GetLastError() << endl;
-		return;
-	}
+	int len = filename.size() - pre;
+
 	send(s, (char*)&len, sizeof(len), 0);
 	send(s, filename.c_str() + pre, len, 0);
 	send(s, (char*)&ft, sizeof(ft), 0);
+	if (_A_SUBDIR&fileData.attrib){
+		return;
+	}
 	//等待对方回复
 	char ch;
-	recv(s, &ch, sizeof(ch), 0);
+	int r = recv(s, &ch, sizeof(ch), 0);
+	if (r == -1){
+		cout << "服务端套接字已关闭" << endl;
+		return;
+	}
 	if (ch == 0x11){//需要传送
 		send(s, &ch, sizeof(ch), 0);
-	}
-	else if(ch==0x00){
+
+		FILE* f = _fsopen(filename.c_str(), "rb", _SH_DENYWR);
+		if (f == 0){
+			cout << "读取文件失败:" << filename << "\t errNo:" << GetLastError() << endl;
+			return;
+		}
+		len = 4096;
+		char* buf = (char*)malloc(len);
+		size_t rt;
+		while ((rt = fread(buf, 1, len, f)) != 0){
+			send(s, buf, rt, 0);
+		}
+		free(buf);
 		::fclose(f);
+	}
+	else if (ch == 0x00){
 		return;
 	}
 	else
 	{
 		cout << "确认传送文件失败:" << filename << "\t" << ch << endl;
-		::fclose(f);
 		return;
 	}
-	len = 4096;
-	char* buf = (char*)malloc(len);
-	size_t rt;
-	while ((rt = fread(buf, 1, len, f)) != 0){
-		send(s, buf, rt, 0);
-	}
-	free(buf);
-	::fclose(f);
 
 }
 void listFiles(string filename, SOCKET s){
@@ -147,6 +148,7 @@ void socketClient(char* host, USHORT port){
 	cin.getline(buf, 100);
 	cin.getline(buf, 100);
 	fname = buf;
+	pre = fname.rfind("\\");
 	listFiles(fname, client);
 
 	closesocket(client);
@@ -190,14 +192,16 @@ DWORD WINAPI recvDataThread(LPVOID lpParam){
 	while (true){
 		ret = readBuf(s, buf, sizeof(int));
 		if (ret <= 0){
+			cout << "对方连接已关闭" << endl;
 			break;
 		}
-		int pLen = (int)*buf;
+		int pLen = buf[3] << 24 | buf[2] << 16 | buf[1] << 8 | *buf;
 		ret = readBuf(s, buf, pLen);
 		buf[ret] = '\0';
-		cout << buf << endl;
 		FileTime fileData;
 		ret = readBuf(s, (char*)&fileData, sizeof(fileData));
+
+		cout << buf << "\tsize:" << fileData.size / (1024 * 1024.0) << " MB" << endl;
 		string filename = baseDir + buf;
 		if (fileData.attrib&_A_SUBDIR){
 			FileUtil::createDirs(filename + "\\");
@@ -211,7 +215,6 @@ DWORD WINAPI recvDataThread(LPVOID lpParam){
 			if (err != 0){
 				cout << "打开文件失败:" << filename << endl;
 				send(s, &ch, sizeof(ch), 0);//文件创建失败不接收
-				::fclose(fp);
 				continue;
 			}
 			else
@@ -224,14 +227,17 @@ DWORD WINAPI recvDataThread(LPVOID lpParam){
 			}
 		}
 		ch = 0x11;
-		send(s, &ch, sizeof(ch), 0);
 		FileUtil::createDirs(filename);
 		int total = fileData.size;
-		
+
 		errno_t err = fopen_s(&fp, filename.c_str(), "wb");
 		if (err != 0){
 			cout << "创建文件失败:" << filename << endl;
+			ch = 0x00;
+			send(s, &ch, sizeof(ch), 0);
+			continue;
 		}
+		send(s, &ch, sizeof(ch), 0);
 		ULONG rd = 0, rdLen = len;
 		ULONG sum = fileData.size;
 
